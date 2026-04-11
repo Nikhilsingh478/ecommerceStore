@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { addToCart, increaseQty, decreaseQty, getQty } = useCartStore();
+  const { addToCart, increaseQty, decreaseQty } = useCartStore();
   const qty = useCartStore((s) => s.getQty(product.id));
   const navigate = useNavigate();
 

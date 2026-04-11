@@ -13,11 +13,11 @@ const bannerImages = [
 
 const Home = () => {
   return (
-    <div className="min-h-screen pb-16">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <Carousel images={bannerImages} />
 
-      <div className="mt-2 flex flex-col gap-2">
+      <div className="flex flex-1 flex-col gap-2 mt-2">
         {categories.map((cat) => (
           <SectionGrid
             key={cat.id}

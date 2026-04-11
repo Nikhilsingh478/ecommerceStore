@@ -13,13 +13,13 @@ const Carousel = ({ images }: CarouselProps) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full overflow-hidden bg-card">
+    <div className="relative w-full overflow-hidden bg-card" style={{ height: 180 }}>
       <div
-        className="flex transition-transform duration-300"
+        className="flex h-full transition-transform duration-300"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {images.map((img, i) => (
-          <img key={i} src={img} alt={`Banner ${i + 1}`} className="w-full flex-shrink-0 object-cover" style={{ aspectRatio: "16/7" }} loading="lazy" />
+          <img key={i} src={img} alt={`Banner ${i + 1}`} className="h-full w-full flex-shrink-0 object-cover" loading="lazy" />
         ))}
       </div>
       <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1">

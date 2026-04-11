@@ -10,14 +10,14 @@ const SectionGrid = ({ title, items, columns = 3 }: SectionGridProps) => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-card p-3">
+    <section className="bg-card px-3 py-3">
       <h2 className="mb-3 text-sm font-bold text-foreground">{title}</h2>
-      <div className={`grid gap-3 ${columns === 4 ? "grid-cols-4" : "grid-cols-3"}`}>
+      <div className={`grid gap-4 ${columns === 4 ? "grid-cols-4" : "grid-cols-3"}`}>
         {items.map((item) => (
           <button
             key={item.id}
             onClick={() => navigate(item.link)}
-            className="flex flex-col items-center gap-1"
+            className="flex flex-col items-center gap-1.5"
           >
             <div className="h-16 w-16 overflow-hidden rounded-full bg-muted">
               <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
