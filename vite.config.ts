@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig(({ mode }) => ({
@@ -14,26 +13,46 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
       devOptions: {
         enabled: false,
       },
       workbox: {
+        navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/~oauth/],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/images\.unsplash\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'unsplash-images',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
       },
       manifest: {
-        name: "QuickMart - Online Grocery",
-        short_name: "QuickMart",
+        name: "Ecommerce Store",
+        short_name: "Ecommerce Store",
         description: "Your daily essentials delivered fast",
-        theme_color: "#0080ff",
+        theme_color: "#ffffff",
         background_color: "#f5f5f5",
         display: "standalone",
+        orientation: "portrait",
         start_url: "/",
         icons: [
-          { src: "/pwa-192x192.png", sizes: "192x192", type: "image/png" },
-          { src: "/pwa-512x512.png", sizes: "512x512", type: "image/png" },
+          { src: "/shopping-cart.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
+          { src: "/shopping-cart.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
         ],
       },
     }),

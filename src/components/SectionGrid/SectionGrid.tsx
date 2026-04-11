@@ -6,23 +6,23 @@ interface SectionGridProps {
   columns?: number;
 }
 
-const SectionGrid = ({ title, items, columns = 3 }: SectionGridProps) => {
+const SectionGrid = ({ title, items, columns }: SectionGridProps) => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-card px-3 py-3">
-      <h2 className="mb-3 text-sm font-bold text-foreground">{title}</h2>
-      <div className={`grid gap-4 ${columns === 4 ? "grid-cols-4" : "grid-cols-3"}`}>
+    <section className="bg-background px-4 md:px-0">
+      <h2 className="mb-3 text-[15px] md:text-lg font-bold text-foreground">{title}</h2>
+      <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 md:gap-4">
         {items.map((item) => (
           <button
             key={item.id}
             onClick={() => navigate(item.link)}
-            className="flex flex-col items-center gap-1.5"
+            className="flex flex-col items-center gap-1.5 transition-transform duration-200 active:scale-[0.97]"
           >
-            <div className="h-16 w-16 overflow-hidden rounded-full bg-muted">
-              <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
+            <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-[14px] bg-card p-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-border/30">
+              <img src={item.image} alt="" className="h-full w-full object-contain mix-blend-multiply" loading="lazy" />
             </div>
-            <span className="text-center text-[10px] leading-tight text-secondary-foreground">{item.name}</span>
+            <span className="text-center text-[11px] leading-tight font-medium text-foreground/90">{item.name}</span>
           </button>
         ))}
       </div>

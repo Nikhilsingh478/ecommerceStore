@@ -11,6 +11,7 @@ import NotFound from "@/pages/NotFound";
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="/search" element={<ProductListing />} />
     <Route path="/category/:category" element={<ProductListing />} />
     <Route path="/category/:category/:subcategory" element={<ProductListing />} />
     <Route path="/product/:id" element={<ProductDetail />} />

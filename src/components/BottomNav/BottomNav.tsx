@@ -16,14 +16,14 @@ const BottomNav = () => {
   const totalItems = useCartStore((s) => s.totalItems());
 
   return (
-    <nav className="sticky bottom-0 z-50 flex items-center justify-around border-t border-border bg-card py-1 shadow-lg">
+    <nav className="fixed inset-x-0 bottom-0 z-50 flex md:hidden items-center justify-around bg-card pt-1.5 pb-[calc(0.375rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
       {tabs.map((tab) => {
         const isActive = location.pathname === tab.path;
         return (
           <button
             key={tab.label}
             onClick={() => navigate(tab.path)}
-            className="relative flex flex-col items-center gap-0.5 px-2 py-1"
+            className="relative flex flex-col items-center gap-0.5 px-3 py-1.5 active:scale-95 transition-transform"
           >
             <tab.icon className={`h-5 w-5 ${isActive ? "text-primary" : "text-muted-foreground"}`} />
             {tab.label === "Cart" && totalItems > 0 && (
@@ -31,7 +31,7 @@ const BottomNav = () => {
                 {totalItems}
               </span>
             )}
-            <span className={`text-[10px] ${isActive ? "font-semibold text-primary" : "text-muted-foreground"}`}>
+            <span className={`text-[10px] ${isActive ? "font-semibold text-primary" : "text-foreground/80 font-medium"}`}>
               {tab.label}
             </span>
           </button>

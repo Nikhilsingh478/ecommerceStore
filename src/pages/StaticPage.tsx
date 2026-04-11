@@ -15,8 +15,8 @@ const StaticPage = () => {
   const data = pages[page || ""] || { title: "Page Not Found", content: "The page you are looking for does not exist." };
 
   return (
-    <div className="min-h-screen bg-background pb-16">
-      <div className="sticky top-0 z-40 flex items-center gap-3 bg-card px-3 py-2.5 shadow-sm">
+    <div className="min-h-screen bg-background pb-16 flex flex-col animate-in fade-in duration-300">
+      <div className="sticky top-0 z-40 flex items-center gap-3 bg-card px-4 py-3 shadow-sm">
         <button onClick={() => navigate(-1)}><ArrowLeft className="h-5 w-5 text-foreground" /></button>
         <span className="text-sm font-medium text-foreground">{data.title}</span>
       </div>

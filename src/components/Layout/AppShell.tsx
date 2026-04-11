@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 const AppShell = ({ children }: { children: ReactNode }) => (
-  <div className="flex min-h-screen w-full justify-center bg-muted">
-    <div className="relative w-full max-w-[480px] min-h-screen bg-card shadow-lg">
+  <div className="min-h-screen w-full bg-background flex flex-col">
+    <div className="w-full flex-1">
       {children}
     </div>
   </div>
