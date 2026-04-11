@@ -20,7 +20,7 @@ const Account = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background pb-16">
+    <div className="flex min-h-screen flex-col">
       <div className="sticky top-0 z-40 flex items-center gap-3 bg-card px-3 py-2.5 shadow-sm">
         <button onClick={() => navigate(-1)}><ArrowLeft className="h-5 w-5 text-foreground" /></button>
         <span className="text-sm font-medium text-foreground">Account</span>
@@ -45,7 +45,7 @@ const Account = () => {
         ))}
       </div>
 
-      <div className="mt-2 bg-card">
+      <div className="mt-2 flex-1 bg-card">
         {policyLinks.map((link) => (
           <button
             key={link.label}

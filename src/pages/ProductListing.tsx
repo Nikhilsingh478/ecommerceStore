@@ -32,7 +32,7 @@ const ProductListing = () => {
   }, [category, subcategory, sortValue, filters]);
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <div className="flex border-b border-border bg-card">
         <button onClick={() => setFilterOpen(true)} className="flex flex-1 items-center justify-center gap-1.5 py-2.5 text-xs font-medium text-foreground">
@@ -44,7 +44,7 @@ const ProductListing = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 p-2">
+      <div className="grid flex-1 grid-cols-2 gap-3 p-3">
         {filtered.map((p) => (
           <ProductCard key={p.id} product={p} />
         ))}
