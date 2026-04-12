@@ -96,6 +96,18 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     -webkit-tap-highlight-color: transparent;
   }
+
+  /* Fix image display in dark mode */
+  .dark img {
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+    filter: brightness(1) contrast(1) !important;
+  }
+
+  /* Ensure images maintain proper appearance in both themes */
+  img {
+    mix-blend-mode: normal;
+  }
 }
 
 @layer utilities {
