@@ -72,7 +72,7 @@ const Carousel = ({ images }: CarouselProps) => {
             key={i} 
             src={img} 
             alt={`Banner ${i + 1}`} 
-            className={`h-full w-full flex-shrink-0 object-cover transition-transform duration-[7000ms] ease-out select-none ${i === current ? "scale-[1.04]" : "scale-100"}`} 
+            className={`h-full w-full flex-shrink-0 object-cover object-top transition-transform duration-[7000ms] ease-out select-none ${i === current ? "scale-[1.04]" : "scale-100"}`} 
             loading={i === 0 ? "eager" : "lazy"}
             fetchPriority={i === 0 ? "high" : "auto"}
             draggable={false}
