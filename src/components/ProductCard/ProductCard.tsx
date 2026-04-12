@@ -15,14 +15,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <div 
-      className="flex flex-col rounded-[16px] bg-card p-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition-all duration-300 active:scale-[0.98] md:hover:-translate-y-1"
+      className="flex flex-col rounded-[16px] bg-card p-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition-all duration-[400ms] ease-out active:scale-[0.98] md:hover:-translate-y-1 md:hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] group"
       onClick={() => navigate(`/product/${product.id}`)}
     >
       <div className="relative cursor-pointer overflow-hidden rounded-xl bg-muted/40 p-4">
         <img
           src={product.image}
           alt=""
-          className="aspect-square w-full object-contain transition-transform duration-500 hover:scale-110 mix-blend-multiply"
+          className="aspect-square w-full object-contain transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.12] mix-blend-multiply"
           loading="lazy"
         />
         {product.discount > 0 && (
@@ -41,7 +41,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {qty === 0 ? (
             <button
               onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-              className="flex w-full h-full items-center justify-center rounded-full bg-primary/10 text-[13px] font-bold text-primary transition-all active:scale-95"
+              className="flex w-full h-full items-center justify-center rounded-full bg-primary/10 text-[13px] font-bold text-primary transition-all duration-300 md:hover:bg-primary md:hover:text-primary-foreground active:scale-95"
             >
               ADD
             </button>

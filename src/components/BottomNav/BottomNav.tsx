@@ -23,15 +23,15 @@ const BottomNav = () => {
           <button
             key={tab.label}
             onClick={() => navigate(tab.path)}
-            className="relative flex flex-col items-center gap-0.5 px-3 py-1.5 active:scale-95 transition-transform"
+            className="relative flex flex-col items-center gap-0.5 px-3 py-1.5 active:scale-90 transition-transform duration-300"
           >
-            <tab.icon className={`h-5 w-5 ${isActive ? "text-primary" : "text-muted-foreground"}`} />
+            <tab.icon className={`h-5 w-5 transition-all duration-[500ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? "text-primary scale-110 -translate-y-[2px]" : "text-muted-foreground scale-100"}`} />
             {tab.label === "Cart" && totalItems > 0 && (
-              <span className="absolute -right-1 -top-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-offer px-1 text-[10px] font-bold text-offer-foreground">
+              <span className="absolute -right-1 -top-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-offer px-1 text-[10px] font-bold text-offer-foreground animate-in zoom-in slide-in-from-bottom-2 duration-300">
                 {totalItems}
               </span>
             )}
-            <span className={`text-[10px] ${isActive ? "font-semibold text-primary" : "text-foreground/80 font-medium"}`}>
+            <span className={`text-[10px] transition-all duration-[500ms] ease-out ${isActive ? "font-semibold text-primary translate-y-[1px]" : "text-foreground/80 font-medium"}`}>
               {tab.label}
             </span>
           </button>
