@@ -25,7 +25,7 @@ const Carousel = ({ images }: CarouselProps) => {
             alt={`Banner ${i + 1}`} 
             className={`h-full w-full flex-shrink-0 object-cover transition-transform duration-[4000ms] ease-out ${i === current ? "scale-[1.03]" : "scale-100"}`} 
             loading={i === 0 ? "eager" : "lazy"}
-            fetchPriority={i === 0 ? "high" : "auto"}
+            fetchpriority={i === 0 ? "high" : "auto"}
           />
         ))}
       </div>

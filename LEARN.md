@@ -7,8 +7,8 @@ This deeply structured document serves as a self-learning resource, technical re
 ## 1. PROJECT OVERVIEW
 
 **The Problem:** Modern e-commerce platforms often suffer from slow initial loads, bloated JavaScript bundles, and poor mobile experiences. Mobile users expect native-app-like fluidity without having to actively download a heavyweight app from the App Store.
-**The Solution (Our Architecture):** Building a mobile-first Progressive Web App (PWA). By pushing logic to the client side and using a single-page application (React), we eliminate full-page reload lag. PWAs provide home-screen installation and lightning-fast asset caching.
-**Why Frontend-First?** Decoupling the frontend guarantees that UX logic and UI rendering are perfected immediately. It forces the developer to define clear "data contracts" (Mock JSON files) so that when a backend API naturally replaces the mock files, the transition is flawless.
+**The Solution (Our Architecture):** Building a mobile-first Progressive Web App (PWA). By pushing logic to the client side and using a single-page application (React), we eliminate full-page reload lag. PWAs provide home-screen installation and lightning-fast asset caching through highly opinionated Workbox Proxies.
+**Why Frontend-First?** Decoupling the frontend guarantees that UX logic and UI rendering are perfected immediately. It forces the developer to define clear "data contracts" (Mock JSON files backed by authentic Unsplash imagery) so that when a backend API naturally replaces the mock files, the transition is flawless.
 
 ---
 
@@ -69,16 +69,18 @@ Instead of writing two entirely different platforms, we use an elegant fluid res
 
 ## 7. PERFORMANCE CONSIDERATIONS
 
-- **Typography & Aesthetics:** Overriding browser defaults with **Inter** completely evolves the visual fidelity of the project simulating native OS environments.
-- **PWA Offsets & RuntimeCaching:** By leveraging Workbox strategies intercepting Unsplash Image fetch handlers locally, we force the browser to execute a `CacheFirst` model. This cuts TTI (Time to Interactive) artificially lower, saving monumental network usage thresholds globally.
+- **Typography & Aesthetics:** Overriding browser defaults with Google's **Inter**. Expanding root `--radius` bounds to `1rem` and lifting base `--background` arrays to `99%` completely evolves the visual fidelity simulating Apple OS environments.
+- **Micro-Interaction Polish:** By deploying a deeply specialized WebKit minimalist scrollbar (`::-webkit-scrollbar-thumb`) we explicitly remove chunky default browser mechanics, establishing immediate client trust.
+- **PWA Offsets & RuntimeCaching:** By leveraging Workbox strategies intercepting Unsplash Image fetch handlers locally, we force the browser to execute a `CacheFirst` model. This cuts TTI (Time to Interactive) artificially lower, saving monumental network usage globally. We capped offline cache hoarding at `50 entries` and explicitly constrained the bounds to a `7 Day` rotation cycle.
 
 ---
 
 ## 8. PWA CONCEPTS
 
 - **What is a PWA?** A progressive web app uses modern HTML5 apis tightly bundled to look and act like a native app.
-- **Service Workers & CacheFirst Magic:** A JavaScript proxy intercepting network fetching. I configured custom explicit routing in `vite.config.ts`, ordering Workbox to scrape external payloads (e.g. Unsplash CDN URLs) and enforcing a 30-day rigid offline cache!
-- **Installability, iOS compliance, and Booting:** Using a `manifest.webmanifest`, explicit `theme-color`, and `<apple-touch-icon>`, we guarantee total coverage across mobile OS limitations. We programmatically boot our script globally inside `main.tsx` utilizing `registerSW()`.
+- **Service Workers & CacheFirst Magic:** A JavaScript proxy intercepting network fetching. I configured custom explicit routing in `vite.config.ts`, ordering Workbox to securely proxy external payloads (e.g. Unsplash CDN URLs) and enforcing a rigid 7-day offline expiration.
+- **Offline HTML Escapes:** Utilizing `navigateFallback`, we route fragmented offline clicks cleanly either straight to `/index.html` or explicitly to our `offline.html` embedded bailout screen.
+- **Installability, iOS compliance, and Booting:** Using a `manifest.webmanifest`, explicit `theme-color`, and `<apple-touch-icon>`, we guarantee total coverage across mobile OS limitations. We programmatically boot our script globally inside `main.tsx` utilizing `registerSW({ skipWaiting: true })`.
 
 ---
 
@@ -137,4 +139,4 @@ Instead of writing two entirely different platforms, we use an elegant fluid res
 
 ## 15. SUMMARY
 
-Building the Ecommerce Store successfully merged aesthetic principles with extremely disciplined engineering. Using React, Vite, and Zustand proved that robust e-commerce architectures do not inherently require deeply opinionated overhead frameworks. Mastering pure unidirectional data-flow, state synchronization, semantic layout reflow targeting mobile devices first, and advanced `ServiceWorker` caching fundamentals unlocks absolute peak web performance standards.
+Building the Ecommerce Store successfully merged aesthetic principles with extremely disciplined engineering. Using React 18, Vite, and Zustand proved that robust e-commerce architectures do not inherently require deeply opinionated overhead frameworks. Mastering pure unidirectional data-flow, semantic UI reflow targeting mobile devices first, and preparing for future architectures natively (like injecting `v7_startTransition` router metrics and standardizing DOM `fetchpriority` constraints) sets a pristine benchmark. When coupled with advanced `ServiceWorker` caching logic, we definitively unlock absolute peak web app performance standards!

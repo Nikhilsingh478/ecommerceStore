@@ -4,16 +4,16 @@ Ecommerce Store is a modern, mobile-first e-commerce Progressive Web Application
 
 ## 🚀 Features
 
-- **Progressive Web App (PWA):** Fully installable on devices with robust offline-capability support. Implements advanced Workbox `RuntimeCaching` ensuring images and product networks resolve cleanly without internet access! Web manifests and Apple touch elements are perfectly native.
+- **Progressive Web App (PWA):** Fully installable on devices with robust offline-capability support. Implements advanced Workbox `RuntimeCaching` utilizing a rigid `CacheFirst` protocol for Unsplash image fetching (retaining data strictly for 7 days offline!). Web manifests, `<apple-touch-icon>`, and custom `offline.html` UI bounds are perfectly native.
 - **Category Browsing:** High-density, fast-scanning (4-column grid) categorized sections ensuring quick navigation.
-- **Product Listing:** A clean 2-column mobile grid (expanding responsively to desktop) prioritizing image visibility and readable typography.
+- **Product Listing:** A clean 2-column mobile grid (expanding responsively to desktop) prioritizing image visibility and readable typography utilizing authentic Unsplash payloads.
 - **Product Details:** Rich presentation with image carousels, pricing matrices, and dynamic, animated Add to Cart interactions.
 - **Instant Global Cart & Checkout:** Zero-latency cart updates across all pages, synced seamlessly without prop-drilling, featuring a simulated animated checkout sequence.
 - **Advanced Filter & Sort:** Instantaneous, client-side, dynamic filtering across price boundaries, discounts, brands, and categories.
 - **Intelligent Dynamic Live Search:** Instant, deeply integrated `useMemo` search logic filtering live arrays. Provides a beautiful sliding absolute-positioned Dropdown on Desktop and a cascading live-refresh list replacing Mobile overlays instantly as you type!
 - **Desktop Parity:** Clean responsive header integrating "Buy Again", "Orders", and "Cart" syncing perfectly to standard app behaviors.
-- **Micro-Animations & Typography:** Fully animated DOM transitions (`animate-in slide-in-up`), bounce states, and strict integration of Google's **Inter** typeface for high-fidelity legibility. 
-- **100% White-Labeled:** Entirely custom environment stripped of any scaffold metadata, boilerplate trackers, or intrusive error-overlays.
+- **Premium Aesthetics & Inter Typography:** The UI utilizes Google's **Inter** typeface (the industry standard for modern webapps), soft `1rem` radius corners, deeply layered contrasts (`99%` background lighting), and a strictly custom minimalistic WebKit Scrollbar.
+- **100% White-Labeled & Future Proofed:** Entirely custom environment stripped of any scaffold metadata. We have preemptively implemented the highly anticipated **React Router DOM V7** `v7_startTransition` and `v7_relativeSplatPath` future flags ensuring zero deprecation errors down the road.
 
 ## 🛠 Tech Stack
 
@@ -60,10 +60,11 @@ The application leans on `React Router` to provide distinct view boundaries seam
 
 Currently, Ecommerce Store employs a **Backend-Ready Frontend Interface** by importing structured Typescript arrays (`src/data/*.ts`). This structure acts exactly like a NoSQL document database. When integrating a backend, one simply swaps the synchronous `.map` operations to asynchronous `fetch` calls, leaving the UI components completely untouched.
 
-Through `vite-plugin-pwa`, Ecommerce Store ships with a generated `manifest.webmanifest`. We explicitly utilize `virtual:pwa-register` in the React lifecycle to enforce immediate proxy bootups.
-A Service worker intercepts network queries aggressively:
-- Caching all HTML/JS/CSS logic natively.
-- Using a `CacheFirst` Workbox strategy over external CDNs (like Unsplash images) persisting the high-bandwidth content up to 30 days securely!
+Through `vite-plugin-pwa`, Ecommerce Store ships with a generated `manifest.webmanifest`. We explicitly utilize `virtual:pwa-register` in the React lifecycle to enforce immediate proxy bootups tying directly into `navigateFallback: '/index.html'`.
+A rigorous Service Worker proxies all network bandwidth natively:
+- Eliminates "white screens of death" by strictly caching static HTML/JS/CSS logic using automated File Hash signatures.
+- Re-routes offline navigation to a specialized, embedded `/offline.html` interface.
+- Executes an advanced `CacheFirst` Workbox strategy over Unsplash Network CDNs, limiting data hoarding by enforcing a `maxEntries: 50` pool expiring every `7 days`.
 
 ## 💻 Getting Started
 

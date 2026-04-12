@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 220 10% 25%;
+    --background: 0 0% 99%;
+    --foreground: 220 10% 20%;
 
     --card: 0 0% 100%;
     --card-foreground: 220 10% 25%;
@@ -30,11 +30,11 @@
     --destructive: 0 70% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 94%;
-    --input: 220 10% 94%;
+    --border: 220 10% 92%;
+    --input: 220 10% 92%;
     --ring: 215 80% 55%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --success: 145 50% 45%;
     --success-foreground: 0 0% 100%;
@@ -67,4 +67,20 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Custom Standard Scrollbar for Premium Feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1; 
 }
