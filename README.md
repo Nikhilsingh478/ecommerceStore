@@ -1,6 +1,6 @@
-# Ecommerce Store PWA
+# SwiftCart PWA
 
-Ecommerce Store is a modern, mobile-first e-commerce Progressive Web Application (PWA) tailored for grocery, beauty, and daily essential shopping. Built with React and Vite, the platform provides an ultra-fast, "soft aesthetics" premium frontend experience utilizing the beautiful **Inter** font. Ecommerce Store is fully installable as a PWA, meaning users can add it directly to their mobile home screens and use it like a native iOS or Android application.
+SwiftCart is a modern, mobile-first e-commerce Progressive Web Application (PWA) tailored for grocery, beauty, and daily essential shopping. Built with React and Vite, the platform provides an ultra-fast, "soft aesthetics" premium frontend experience utilizing the beautiful **Inter** font. SwiftCart is fully installable as a PWA, meaning users can add it directly to their mobile home screens and use it like a native iOS or Android application.
 
 ## 🚀 Features
 
@@ -46,7 +46,7 @@ src/
 
 ## 💾 State Management
 
-Ecommerce Store utilizes **Zustand**—a lightweight, un-opinionated state manager—for global UI sync:
+SwiftCart utilizes **Zustand**—a lightweight, un-opinionated state manager—for global UI sync:
 - **Cart State (`useCartStore`)**: Stores an array of cart items with persistent modifications. By using Zustand, tapping "Add to Cart" on the `ProductDetail` page automatically updates the `ProductList` grid, the `BottomNav` notification badge, and the `Cart` page instantaneously without the need for prop drilling.
 
 ## 🚦 Routing Flow
@@ -58,9 +58,9 @@ The application leans on `React Router` to provide distinct view boundaries seam
 - `/product/:id` -> `ProductDetail`
 - `/cart` -> `Cart` (Secure Checkout flow)
 
-Currently, Ecommerce Store employs a **Backend-Ready Frontend Interface** by importing structured Typescript arrays (`src/data/*.ts`). This structure acts exactly like a NoSQL document database. When integrating a backend, one simply swaps the synchronous `.map` operations to asynchronous `fetch` calls, leaving the UI components completely untouched.
+Currently, SwiftCart employs a **Backend-Ready Frontend Interface** by importing structured Typescript arrays (`src/data/*.ts`). This structure acts exactly like a NoSQL document database. When integrating a backend, one simply swaps the synchronous `.map` operations to asynchronous `fetch` calls, leaving the UI components completely untouched.
 
-Through `vite-plugin-pwa`, Ecommerce Store ships with a generated `manifest.webmanifest`. We explicitly utilize `virtual:pwa-register` in the React lifecycle to enforce immediate proxy bootups tying directly into `navigateFallback: '/index.html'`.
+Through `vite-plugin-pwa`, SwiftCart ships with a generated `manifest.webmanifest`. We explicitly utilize `virtual:pwa-register` in the React lifecycle to enforce immediate proxy bootups tying directly into `navigateFallback: '/index.html'`.
 A rigorous Service Worker proxies all network bandwidth natively:
 - Eliminates "white screens of death" by strictly caching static HTML/JS/CSS logic using automated File Hash signatures.
 - Re-routes offline navigation to a specialized, embedded `/offline.html` interface.

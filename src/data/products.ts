@@ -21,7 +21,7 @@ export const products: Product[] = [
 
   // 🛢 Oils
   { id: "4", name: "Fortune Sunflower Oil 1L", category: "grocery", subcategory: "oils-ghee", price: 135, mrp: 160, discount: 16, offerPrice: 135, image: "https://images.unsplash.com/photo-1620619767323-b95a89183081?w=200&h=200&fit=crop&auto=format&q=80", brand: "Fortune" },
-  { id: "5", name: "Dhara Mustard Oil 1L", category: "grocery", subcategory: "oils-ghee", price: 180, mrp: 210, discount: 14, offerPrice: 180, image: "https://images.unsplash.com/photo-1599839619722-e1d13f9c6a7e?w=200&h=200&fit=crop&auto=format&q=80", brand: "Dhara" },
+  { id: "5", name: "Dhara Mustard Oil 1L", category: "grocery", subcategory: "oils-ghee", price: 180, mrp: 210, discount: 14, offerPrice: 180, image: "https://m.media-amazon.com/images/I/61TTCzxGUbS._AC_UF894,1000_QL80_.jpg", brand: "Dhara" },
 
   // 🌶 Spices
   { id: "6", name: "Catch Turmeric Powder 200g", category: "grocery", subcategory: "spices", price: 52, mrp: 60, discount: 13, offerPrice: 52, image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=200&h=200&fit=crop&auto=format&q=80", brand: "Catch" },
@@ -42,7 +42,7 @@ export const products: Product[] = [
   { id: "15", name: "Britannia Cheese Slices", category: "dairy", subcategory: "butter-cheese", price: 125, mrp: 145, discount: 14, offerPrice: 125, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=200&h=200&fit=crop&auto=format&q=80", brand: "Britannia" },
 
   // 🧴 Personal Care
-  { id: "16", name: "Colgate MaxFresh 150g", category: "personal-care", subcategory: "oral-care", price: 89, mrp: 105, discount: 15, offerPrice: 89, image: "https://images.unsplash.com/photo-1606752003889-cb8dbfe35767?w=200&h=200&fit=crop&auto=format&q=80", brand: "Colgate" },
+  { id: "16", name: "Colgate MaxFresh 150g", category: "personal-care", subcategory: "oral-care", price: 89, mrp: 105, discount: 15, offerPrice: 89, image: "https://m.media-amazon.com/images/I/61f+32QXZML.jpg", brand: "Colgate" },
   { id: "17", name: "Head & Shoulders Shampoo 340ml", category: "personal-care", subcategory: "hair-care", price: 310, mrp: 370, discount: 16, offerPrice: 310, image: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop&auto=format&q=80", brand: "Head & Shoulders" },
   { id: "18", name: "Dove Body Wash 250ml", category: "personal-care", subcategory: "body-care", price: 199, mrp: 240, discount: 17, offerPrice: 199, image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&h=200&fit=crop&auto=format&q=80", brand: "Dove" },
 

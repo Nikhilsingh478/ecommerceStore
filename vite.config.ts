@@ -42,8 +42,8 @@ export default defineConfig(({ mode }) => ({
         ]
       },
       manifest: {
-        name: "Ecommerce Store",
-        short_name: "Ecommerce Store",
+        name: "SwiftCart",
+        short_name: "SwiftCart",
         description: "Your daily essentials delivered fast",
         theme_color: "#ffffff",
         background_color: "#f5f5f5",

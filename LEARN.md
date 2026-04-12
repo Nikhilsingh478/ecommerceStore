@@ -1,6 +1,6 @@
-# Deep Learning & Interview Guide: Ecommerce Store Architecture
+# Deep Learning & Interview Guide: SwiftCart Architecture
 
-This deeply structured document serves as a self-learning resource, technical reference, and interview preparation guide for the Ecommerce Store e-commerce architecture.
+This deeply structured document serves as a self-learning resource, technical reference, and interview preparation guide for the SwiftCart e-commerce architecture.
 
 ---
 
@@ -139,4 +139,4 @@ Instead of writing two entirely different platforms, we use an elegant fluid res
 
 ## 15. SUMMARY
 
-Building the Ecommerce Store successfully merged aesthetic principles with extremely disciplined engineering. Using React 18, Vite, and Zustand proved that robust e-commerce architectures do not inherently require deeply opinionated overhead frameworks. Mastering pure unidirectional data-flow, semantic UI reflow targeting mobile devices first, and preparing for future architectures natively (like injecting `v7_startTransition` router metrics and standardizing DOM `fetchpriority` constraints) sets a pristine benchmark. When coupled with advanced `ServiceWorker` caching logic, we definitively unlock absolute peak web app performance standards!
+Building the SwiftCart successfully merged aesthetic principles with extremely disciplined engineering. Using React 18, Vite, and Zustand proved that robust e-commerce architectures do not inherently require deeply opinionated overhead frameworks. Mastering pure unidirectional data-flow, semantic UI reflow targeting mobile devices first, and preparing for future architectures natively (like injecting `v7_startTransition` router metrics and standardizing DOM `fetchpriority` constraints) sets a pristine benchmark. When coupled with advanced `ServiceWorker` caching logic, we definitively unlock absolute peak web app performance standards!

@@ -13,7 +13,7 @@ export const categories: Category[] = [
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=120&h=120&fit=crop&auto=format&q=80",
     subcategories: [
       { id: "atta-rice-dal", name: "Atta, Rice & Dal", image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=100&h=100&fit=crop&auto=format&q=80" },
-      { id: "oils-ghee", name: "Oils & Ghee", image: "https://images.unsplash.com/photo-1474979266404-7eabd7a43462?w=100&h=100&fit=crop&auto=format&q=80" },
+      { id: "oils-ghee", name: "Oils & Ghee", image: "https://cdn.shopify.com/s/files/1/0566/6226/1897/files/Ghee_and_oil_preparation_techniques_480x480.jpg?v=1682655303" },
       { id: "spices", name: "Masala & Spices", image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=100&h=100&fit=crop&auto=format&q=80" },
       { id: "dry-fruits", name: "Dry Fruits", image: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=100&h=100&fit=crop&auto=format&q=80" },
       { id: "flours", name: "Flours", image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=100&h=100&fit=crop&auto=format&q=80" },
@@ -44,7 +44,7 @@ export const categories: Category[] = [
       { id: "biscuits", name: "Biscuits", image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=100&h=100&fit=crop&auto=format&q=80" },
       { id: "chips", name: "Chips", image: "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=100&h=100&fit=crop&auto=format&q=80" },
       { id: "namkeen", name: "Namkeen", image: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=100&h=100&fit=crop&auto=format&q=80" },
-      { id: "soft-drinks", name: "Soft Drinks", image: "https://images.unsplash.com/photo-1581090700227-1e8e3f4a3e94?w=100&h=100&fit=crop&auto=format&q=80" },
+      { id: "soft-drinks", name: "Soft Drinks", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWBujF3LNaztLCaqQngx_QOAk-jURo7VVC_Q&s" },
       { id: "juices", name: "Juices", image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=100&h=100&fit=crop&auto=format&q=80" },
       { id: "tea-coffee", name: "Tea & Coffee", image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=100&h=100&fit=crop&auto=format&q=80" },
     ],
