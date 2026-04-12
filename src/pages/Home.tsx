@@ -5,11 +5,11 @@ import SectionGrid from "@/components/SectionGrid/SectionGrid";
 import { categories } from "@/data/categories";
 import { brands } from "@/data/brands";
 
-const bannerImages = [
-  "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=350&fit=crop&auto=format&q=80",
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=350&fit=crop&auto=format&q=80",
-  "https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=800&h=350&fit=crop&auto=format&q=80",
-];
+import banner1 from "@/assets/banner1.webp";
+import banner2 from "@/assets/banner2.webp";
+import banner3 from "@/assets/banner3.webp";
+
+const bannerImages = [banner1, banner2, banner3];
 
 const Home = () => {
   return (

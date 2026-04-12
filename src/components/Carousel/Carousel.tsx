@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface CarouselProps {
   images: string[];
@@ -31,6 +32,16 @@ const Carousel = ({ images }: CarouselProps) => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
 
+  const nextSlide = () => {
+    setCurrent((c) => (c + 1) % images.length);
+    startTimer();
+  };
+
+  const prevSlide = () => {
+    setCurrent((c) => (c - 1 + images.length) % images.length);
+    startTimer();
+  };
+
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
@@ -38,17 +49,15 @@ const Carousel = ({ images }: CarouselProps) => {
     const isRightSwipe = distance < -50;
     
     if (isLeftSwipe) {
-      setCurrent((c) => (c + 1) % images.length);
-      startTimer();
+      nextSlide();
     } else if (isRightSwipe) {
-      setCurrent((c) => (c - 1 + images.length) % images.length);
-      startTimer();
+      prevSlide();
     }
   };
 
   return (
     <div 
-      className="relative w-full overflow-hidden bg-muted md:rounded-xl shadow-sm" 
+      className="relative w-full overflow-hidden bg-muted md:rounded-xl shadow-sm group" 
       style={{ height: 200, touchAction: "pan-y" }}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -65,13 +74,30 @@ const Carousel = ({ images }: CarouselProps) => {
             alt={`Banner ${i + 1}`} 
             className={`h-full w-full flex-shrink-0 object-cover transition-transform duration-[7000ms] ease-out select-none ${i === current ? "scale-[1.04]" : "scale-100"}`} 
             loading={i === 0 ? "eager" : "lazy"}
-            fetchpriority={i === 0 ? "high" : "auto"}
+            fetchPriority={i === 0 ? "high" : "auto"}
             draggable={false}
           />
         ))}
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+
+      {/* Desktop Arrows */}
+      <button 
+        onClick={prevSlide}
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 h-8 w-8 items-center justify-center rounded-full bg-background/80 text-foreground shadow-sm opacity-0 transition-all duration-300 md:group-hover:opacity-100 hover:bg-background active:scale-95"
+        aria-label="Previous Slide"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+
+      <button 
+        onClick={nextSlide}
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 h-8 w-8 items-center justify-center rounded-full bg-background/80 text-foreground shadow-sm opacity-0 transition-all duration-300 md:group-hover:opacity-100 hover:bg-background active:scale-95"
+        aria-label="Next Slide"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
 
       <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2 z-10">
         {images.map((_, i) => (
