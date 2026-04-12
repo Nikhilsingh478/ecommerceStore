@@ -12,6 +12,7 @@ SwiftCart is a modern, mobile-first e-commerce Progressive Web Application (PWA)
 - **Advanced Filter & Sort:** Instantaneous, client-side, dynamic filtering across price boundaries, discounts, brands, and categories.
 - **Intelligent Dynamic Live Search:** Instant, deeply integrated `useMemo` search logic filtering live arrays. Provides a beautiful sliding absolute-positioned Dropdown on Desktop and a cascading live-refresh list replacing Mobile overlays instantly as you type!
 - **Desktop Parity:** Clean responsive header integrating "Buy Again", "Orders", and "Cart" syncing perfectly to standard app behaviors.
+- **Dark Mode Support:** Complete dark/light theme switching with system preference detection and smooth transitions. All UI elements, including images, are optimized for both themes.
 - **Premium Aesthetics & Inter Typography:** The UI utilizes Google's **Inter** typeface (the industry standard for modern webapps), soft `1rem` radius corners, deeply layered contrasts (`99%` background lighting), and a strictly custom minimalistic WebKit Scrollbar.
 - **100% White-Labeled & Future Proofed:** Entirely custom environment stripped of any scaffold metadata. We have preemptively implemented the highly anticipated **React Router DOM V7** `v7_startTransition` and `v7_relativeSplatPath` future flags ensuring zero deprecation errors down the road.
 
@@ -21,6 +22,7 @@ SwiftCart is a modern, mobile-first e-commerce Progressive Web Application (PWA)
 - **Styling:** Tailwind CSS (Vanilla utilities with custom "soft UI" design tokens)
 - **State Management:** Zustand
 - **Routing:** React Router v6
+- **Theme Management:** next-themes for seamless dark/light mode switching
 - **PWA Capabilities:** vite-plugin-pwa (Service Workers, Web App Manifest)
 - **Icons:** Lucide React
 
@@ -84,8 +86,18 @@ npm run build
 npm run preview
 ```
 
+## 🎨 Theme System
+
+SwiftCart features a comprehensive dark mode system:
+- **Automatic System Detection:** Respects user's OS preference (light/dark/system)
+- **Manual Toggle:** Users can manually switch between themes via the Account page
+- **Optimized Images:** All product images, banners, and carousel images maintain proper brightness and contrast in both themes
+- **Smooth Transitions:** Theme switching applies instantly without jarring visual changes
+- **CSS Custom Properties:** Uses HSL color values for consistent theming across all components
+
 ## 🔮 Future Improvements
 
 1. **Backend Integration:** Migrate local `/data` arrays to a RESTful or GraphQL Postgres API.
 2. **Authentication:** Bind `Cart` states to active OAuth/JWT authenticated profiles.
 3. **Payments:** Incorporate Stripe/Razorpay directly into the Checkout completion hook.
+4. **Enhanced Theme Options:** Add custom color schemes and accent color customization.
