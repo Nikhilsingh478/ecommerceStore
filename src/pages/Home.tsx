@@ -5,11 +5,11 @@ import SectionGrid from "@/components/SectionGrid/SectionGrid";
 import { categories } from "@/data/categories";
 import { brands } from "@/data/brands";
 
-const bannerImages = [
-  "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg",
-  "https://static.vecteezy.com/system/resources/thumbnails/022/536/552/small/modern-banner-background-colorful-green-gradation-and-quining-slash-abstract-eps-10-free-vector.jpg",
-  "https://png.pngtree.com/thumb_back/fh260/background/20210115/pngtree-bright-and-simple-light-blue-banner-background-image_519888.jpg",
-];
+import banner1 from "@/assets/banner1.webp";
+import banner2 from "@/assets/banner2.webp";
+import banner3 from "@/assets/banner3.webp";
+
+const bannerImages = [banner1, banner2, banner3];
 
 const Home = () => {
   return (
