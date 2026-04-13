@@ -4,13 +4,15 @@ import App from "./App.tsx";
 import "./index.css";
 
 if ("serviceWorker" in navigator) {
-  registerSW({
-    onNeedRefresh() {
-      console.log('New version available');
-    },
-    onOfflineReady() {
-      console.log('App ready for offline use');
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (const reg of registrations) {
+      reg.update();
     }
+  });
+
+  registerSW({
+    onNeedRefresh() {},
+    onOfflineReady() {},
   });
 }
 
