@@ -46,14 +46,14 @@ export default defineConfig(({ mode }) => ({
         name: "SwiftCart",
         short_name: "SwiftCart",
         description: "Your daily essentials delivered fast",
-        theme_color: "#16a34a",
+        theme_color: "#000000",
         background_color: "#ffffff",
         display: "standalone",
         orientation: "portrait",
         start_url: "/",
         icons: [
-          { src: "/shopping-cart.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
-          { src: "/shopping-cart.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
+          { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
+          { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
         ],
       },
     }),
