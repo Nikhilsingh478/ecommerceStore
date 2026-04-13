@@ -118,8 +118,13 @@ const Carousel = ({ images }: CarouselProps) => {
             key={i}
             src={img}
             alt={`Banner ${i + 1}`}
+            width={900}
+            height={360}
             className="h-full w-full flex-shrink-0 object-cover object-top"
             loading={i === 0 ? "eager" : "lazy"}
+            decoding={i === 0 ? "sync" : "async"}
+            // @ts-ignore — fetchpriority is valid HTML but not yet in React's types
+            fetchpriority={i === 0 ? "high" : "low"}
             draggable={false}
           />
         ))}
@@ -143,14 +148,21 @@ const Carousel = ({ images }: CarouselProps) => {
         <ChevronRight className="h-5 w-5" />
       </button>
 
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2 z-10 pointer-events-auto">
+      {/* Dots with proper 44px touch targets */}
+      <div className="absolute bottom-0 left-1/2 flex -translate-x-1/2 z-10 pointer-events-auto">
         {images.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-white shadow-sm" : "w-1.5 bg-white/50 hover:bg-white/80"}`}
             aria-label={`Go to slide ${i + 1}`}
-          />
+            className="flex h-11 w-8 items-center justify-center"
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                i === current ? "w-6 h-1.5 bg-white shadow-sm" : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>

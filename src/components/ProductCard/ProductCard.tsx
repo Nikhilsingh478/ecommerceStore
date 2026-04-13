@@ -21,9 +21,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="relative cursor-pointer overflow-hidden rounded-xl bg-muted/40 p-4">
         <img
           src={product.image}
-          alt=""
+          alt={product.name}
+          width={200}
+          height={200}
           className="aspect-square w-full object-contain transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.12] mix-blend-multiply"
           loading="lazy"
+          decoding="async"
         />
         {product.discount > 0 && (
           <span className="absolute left-2 top-2 rounded-full bg-offer/10 px-2 py-0.5 text-[10px] font-bold tracking-wide text-offer">
