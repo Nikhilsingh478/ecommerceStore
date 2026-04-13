@@ -34,7 +34,7 @@ export const products: Product[] = [
 
   // ☕ Beverages
   { id: "11", name: "Red Label Tea 500g", category: "snacks", subcategory: "tea-coffee", price: 215, mrp: 250, discount: 14, offerPrice: 215, image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop&auto=format&q=80", brand: "Red Label" },
-  { id: "12", name: "Nescafe Coffee 200g", category: "snacks", subcategory: "tea-coffee", price: 340, mrp: 380, discount: 10, offerPrice: 340, image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop&auto=format&q=80", brand: "Nestle" },
+  { id: "12", name: "Nescafe Coffee 200g", category: "snacks", subcategory: "tea-coffee", price: 340, mrp: 380, discount: 10, offerPrice: 340, image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop&auto=format&q=80", brand: "Nestlé" },
 
   // 🥛 Dairy
   { id: "13", name: "Mother Dairy Milk 1L", category: "dairy", subcategory: "milk", price: 62, mrp: 66, discount: 6, offerPrice: 62, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&h=200&fit=crop&auto=format&q=80", brand: "Mother Dairy" },
@@ -51,7 +51,7 @@ export const products: Product[] = [
   { id: "20", name: "Vim Dishwash Gel 750ml", category: "household", subcategory: "dishwash", price: 125, mrp: 149, discount: 16, offerPrice: 125, image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=200&h=200&fit=crop&auto=format&q=80", brand: "Vim" },
 
   // 🍹 Soft Drinks
-  { id: "21", name: "Coca Cola Bottle 2L", category: "snacks", subcategory: "soft-drinks", price: 95, mrp: 105, discount: 9, offerPrice: 95, image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=200&h=200&fit=crop&auto=format&q=80", brand: "Coca Cola" },
+  { id: "21", name: "Coca Cola Bottle 2L", category: "snacks", subcategory: "soft-drinks", price: 95, mrp: 105, discount: 9, offerPrice: 95, image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=200&h=200&fit=crop&auto=format&q=80", brand: "Coca-Cola" },
   { id: "22", name: "Red Bull Energy Drink 250ml", category: "snacks", subcategory: "soft-drinks", price: 120, mrp: 125, discount: 4, offerPrice: 120, image: "https://images.unsplash.com/photo-1643133277733-66a476f7f32e?w=200&h=200&fit=crop&auto=format&q=80", brand: "Red Bull" },
 
 ];

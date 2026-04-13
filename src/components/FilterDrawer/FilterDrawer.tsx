@@ -28,7 +28,7 @@ const FilterDrawer = ({ open, onClose, onApply }: FilterDrawerProps) => {
 
   const getOptions = () => {
     if (activeTab === "Category") return categories.map((c) => ({ id: c.id, label: c.name }));
-    if (activeTab === "Brand") return brands.map((b) => ({ id: b.id, label: b.name }));
+    if (activeTab === "Brand") return brands.map((b) => ({ id: b.name, label: b.name }));
     if (activeTab === "Discount") return discountOptions.map((d) => ({ id: d, label: d }));
     return priceOptions.map((p) => ({ id: p, label: p }));
   };
