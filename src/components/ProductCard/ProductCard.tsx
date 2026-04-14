@@ -15,65 +15,65 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <div
-      className="group flex flex-col rounded-[20px] bg-card overflow-hidden border border-border/30 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-350 ease-out active:scale-[0.97] md:hover:-translate-y-2 md:hover:shadow-[0_12px_40px_rgba(0,0,0,0.1),0_2px_8px_rgba(0,0,0,0.04)] md:hover:border-border/50 cursor-pointer"
+      className="group flex flex-col rounded-2xl bg-white border border-[#F1F5F9] shadow-sm overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-md hover:-translate-y-px active:scale-[0.98]"
       onClick={() => navigate(`/product/${product.id}`)}
     >
-      {/* Image ─────────────────────────────────── */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/60 dark:from-slate-900/60 dark:to-slate-800/40 aspect-[4/3]">
+      {/* Image */}
+      <div className="relative aspect-square overflow-hidden bg-[#F8FAFC] p-3">
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-contain p-3 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.1]"
+          className="h-full w-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.05]"
           loading="lazy"
           decoding="async"
         />
-
-        {/* Discount badge */}
         {product.discount > 0 && (
-          <span className="absolute left-2.5 top-2.5 rounded-full bg-offer px-2.5 py-0.5 text-[10px] font-black tracking-wide text-offer-foreground shadow-[0_2px_6px_hsl(var(--offer)/0.35)]">
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-medium text-green-700">
             {getDiscountLabel(product.discount)}
           </span>
         )}
       </div>
 
-      {/* Info ───────────────────────────────────── */}
-      <div className="flex flex-1 flex-col p-3 gap-2">
-        <p className="line-clamp-2 text-[12.5px] font-semibold leading-snug text-foreground">{product.name}</p>
+      {/* Info */}
+      <div className="flex flex-1 flex-col gap-2 p-3">
+        <p className="line-clamp-2 text-[12.5px] font-medium leading-snug text-[#0F172A]">
+          {product.name}
+        </p>
 
-        <div className="flex items-baseline gap-1.5 mt-auto">
-          <span className="text-[14px] font-black text-foreground tracking-tight">{formatPrice(product.offerPrice)}</span>
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[14px] font-semibold text-[#0F172A]">{formatPrice(product.offerPrice)}</span>
           {product.mrp > product.offerPrice && (
-            <span className="text-[10.5px] text-muted-foreground line-through">{formatPrice(product.mrp)}</span>
+            <span className="text-[11px] text-[#94A3B8] line-through">{formatPrice(product.mrp)}</span>
           )}
         </div>
 
-        {/* Add / Stepper */}
-        <div className="h-[34px] mt-0.5">
+        {/* CTA */}
+        <div
+          className="mt-auto h-[34px]"
+          onClick={(e) => e.stopPropagation()}
+        >
           {qty === 0 ? (
             <button
-              onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-              className="flex w-full h-full items-center justify-center gap-1.5 rounded-full bg-primary text-primary-foreground text-[12px] font-black shadow-[0_2px_12px_hsl(var(--primary)/0.35)] transition-all duration-300 active:scale-95 md:hover:shadow-[0_4px_20px_hsl(var(--primary)/0.4)] md:hover:brightness-110"
+              onClick={() => addToCart(product)}
+              className="flex w-full h-full items-center justify-center gap-1.5 rounded-xl bg-[#0F172A] text-white text-[12px] font-medium transition-all duration-200 hover:bg-[#1E293B] active:scale-[0.97]"
             >
-              <Plus className="h-3.5 w-3.5" strokeWidth={3} />
-              ADD
+              <Plus className="h-3.5 w-3.5" strokeWidth={2} />
+              Add
             </button>
           ) : (
-            <div
-              className="flex w-full h-full items-center justify-between rounded-full border-2 border-primary/25 bg-primary/8 px-0.5 transition-all"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="flex w-full h-full items-center justify-between rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-0.5">
               <button
                 onClick={() => decreaseQty(product.id)}
-                className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_1px_6px_hsl(var(--primary)/0.3)] active:scale-90 transition-transform"
+                className="flex h-[26px] w-[26px] items-center justify-center rounded-lg bg-white border border-[#E2E8F0] shadow-sm active:scale-90 transition-transform"
               >
-                <Minus className="h-3 w-3" strokeWidth={3} />
+                <Minus className="h-3 w-3 text-[#0F172A]" strokeWidth={2.5} />
               </button>
-              <span className="text-[13px] font-black text-primary">{qty}</span>
+              <span className="text-[13px] font-semibold text-[#0F172A]">{qty}</span>
               <button
                 onClick={() => increaseQty(product.id)}
-                className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_1px_6px_hsl(var(--primary)/0.3)] active:scale-90 transition-transform"
+                className="flex h-[26px] w-[26px] items-center justify-center rounded-lg bg-[#0F172A] text-white active:scale-90 transition-transform"
               >
-                <Plus className="h-3 w-3" strokeWidth={3} />
+                <Plus className="h-3 w-3" strokeWidth={2.5} />
               </button>
             </div>
           )}

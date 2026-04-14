@@ -1,0 +1,260 @@
+You are a senior product designer + frontend engineer working on a premium e-commerce UI. Follow instructions EXACTLY. No shortcuts. No generic design. No overuse of colors.
+
+OBJECTIVE:
+Transform the entire UI into a PREMIUM, MINIMAL, AESTHETIC, AWARDS-LEVEL design system. The result must feel like a modern, funded startup product (inspired by Apple, Linear, Stripe, Notion, and high-end e-commerce apps like Zepto/Blinkit — but NOT copying them).
+
+CORE DESIGN PRINCIPLES:
+
+* Minimalism over clutter
+* Consistency over randomness
+* Subtlety over loud colors
+* Depth through shadows, not borders
+* Smooth motion and micro-interactions
+* Clean typography hierarchy
+* Professional spacing system (8px grid)
+
+---
+
+STEP 1 — REMOVE BAD DESIGN ELEMENTS (MANDATORY)
+
+REMOVE:
+
+* “Express delivery in 10 minutes” banner
+* All random colorful borders around cards
+* Any inconsistent background colors
+* Loud gradients or childish UI elements
+* Unnecessary shadows or glowing effects
+
+---
+
+STEP 2 — DEFINE COLOR SYSTEM (STRICT)
+
+Use EXACT palette:
+
+Primary:
+
+* #0F172A (deep slate / near black)
+
+Accent:
+
+* #2563EB (blue)
+
+Neutral:
+
+* #FFFFFF (white)
+* #F8FAFC (light background)
+* #E2E8F0 (borders / dividers)
+* #64748B (secondary text)
+
+Success (for discount badges):
+
+* #16A34A
+
+CRITICAL:
+
+* DO NOT introduce extra colors
+* REMOVE all rainbow color cards
+* Background must be clean and neutral
+
+---
+
+STEP 3 — TYPOGRAPHY SYSTEM
+
+Use:
+Font: Inter (or system-ui fallback)
+
+Hierarchy:
+
+H1:
+
+* text-3xl font-semibold tracking-tight
+
+H2:
+
+* text-xl font-semibold
+
+Body:
+
+* text-sm text-slate-600
+
+Labels:
+
+* text-xs text-slate-500
+
+CRITICAL:
+
+* Increase line-height and spacing
+* Avoid bold everywhere — use weight intentionally
+
+---
+
+STEP 4 — SPACING SYSTEM (VERY IMPORTANT)
+
+Follow strict 8px grid:
+
+* Section padding: 24px–32px
+* Card padding: 12px–16px
+* Gap between cards: 16px–24px
+* Section spacing: 32px–48px
+
+NO random spacing allowed.
+
+---
+
+STEP 5 — NAVBAR REDESIGN
+
+Make navbar premium:
+
+* Sticky top
+* Background: white with slight transparency
+* Add subtle blur (backdrop-blur)
+* Soft bottom border (#E2E8F0)
+
+Search bar:
+
+* Rounded-full
+* Soft background (#F1F5F9)
+* Padding increased
+* Placeholder subtle
+
+Icons:
+
+* Reduce visual weight
+* Use consistent size
+
+---
+
+STEP 6 — CATEGORY GRID REDESIGN
+
+Transform cards:
+
+* Remove colorful borders
+* Use:
+
+  * bg-white
+  * rounded-2xl
+  * shadow-sm
+* Add hover:
+
+  * scale(1.03)
+  * shadow-md
+
+Images:
+
+* Centered
+* Consistent size
+* Add padding inside container
+
+Text:
+
+* Clean, minimal, centered
+
+---
+
+STEP 7 — PRODUCT CARD (CRITICAL SECTION)
+
+Redesign cards like premium apps:
+
+Container:
+
+* bg-white
+* rounded-2xl
+* shadow-sm
+* hover: shadow-lg + slight lift
+
+Image:
+
+* aspect-square
+* object-cover
+* rounded-xl
+* subtle zoom on hover
+
+Badge:
+
+* small pill
+* bg-green-100 text-green-700
+* text-xs font-medium
+
+Title:
+
+* text-sm font-medium
+* truncate if long
+
+Price:
+
+* bold primary price
+* muted strikethrough original price
+
+CTA Button:
+
+* full width
+* rounded-xl
+* bg-slate-900 text-white
+* hover: bg-slate-800
+* active: scale(0.97)
+
+---
+
+STEP 8 — REMOVE VISUAL NOISE
+
+* No heavy borders
+* No multiple shadows stacking
+* No inconsistent icon styles
+* No random font sizes
+
+Everything must feel calm, clean, and intentional.
+
+---
+
+STEP 9 — MICRO INTERACTIONS
+
+Add subtle animations:
+
+* hover scale (cards)
+* button press feedback
+* smooth transitions (200–300ms ease)
+
+DO NOT overanimate.
+
+---
+
+STEP 10 — LAYOUT IMPROVEMENT
+
+* Increase max-width container
+* Center content
+* Improve grid responsiveness:
+
+  * mobile: 2 columns
+  * tablet: 3 columns
+  * desktop: 4–5 columns
+
+---
+
+STEP 11 — FINAL CHECK
+
+Ensure:
+
+* Consistent spacing everywhere
+* Consistent color usage
+* No random styles
+* UI feels premium and calm
+* No element looks “template-like”
+
+---
+
+OUTPUT REQUIREMENTS:
+
+* Updated component code (Navbar, CategoryCard, ProductCard)
+* Updated Tailwind classes
+* Clean, readable structure
+* No unnecessary libraries
+
+SUCCESS CRITERIA:
+
+* UI looks like a modern funded startup
+* Clean, minimal, premium feel
+* No childish or colorful clutter
+* Strong visual hierarchy
+* Smooth interactions
+
+END.
