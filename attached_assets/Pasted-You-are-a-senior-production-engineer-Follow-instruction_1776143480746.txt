@@ -1,0 +1,87 @@
+You are a senior production engineer. Follow instructions EXACTLY. Do not add extra features. Do not use plugins. Do not assume anything.
+
+OBJECTIVE:
+Fix the PWA so that a valid Service Worker is deployed at the ROOT path `/sw.js` and is correctly registered, so PWABuilder detects it.
+
+STRICT REQUIREMENTS:
+
+* The Service Worker MUST be available at: https://<domain>/sw.js
+* It MUST NOT return 404
+* It MUST be served from the Vite production build
+* Registration MUST use absolute path `/sw.js`
+* Do NOT use vite-plugin-pwa or any auto-generated service workers
+* Do NOT overcomplicate caching logic
+
+STEP 1 — CREATE SERVICE WORKER FILE:
+Create a file at EXACT path:
+`/public/sw.js`
+
+Add this EXACT code:
+
+self.addEventListener("install", (event) => {
+self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+console.log("Service Worker activated");
+});
+
+self.addEventListener("fetch", (event) => {
+event.respondWith(fetch(event.request));
+});
+
+STEP 2 — REGISTER SERVICE WORKER:
+Locate the main entry file (main.jsx / main.js / index.js).
+
+Add this EXACT code:
+
+if ("serviceWorker" in navigator) {
+window.addEventListener("load", () => {
+navigator.serviceWorker.register("/sw.js")
+.then(() => console.log("SW registered"))
+.catch((err) => console.error("SW registration failed:", err));
+});
+}
+
+IMPORTANT:
+
+* Path MUST be "/sw.js" (absolute path)
+* DO NOT use relative paths
+
+STEP 3 — VERIFY VITE CONFIG:
+Ensure Vite is serving `/public` directory correctly.
+DO NOT modify build output path unless necessary.
+DO NOT use any PWA plugins.
+
+STEP 4 — BUILD VERIFICATION:
+After implementation:
+
+* Run production build
+* Ensure `/dist/sw.js` exists OR is served correctly from root
+
+STEP 5 — FINAL CHECK:
+Simulate production:
+
+* Access `/sw.js` directly → MUST return JS file (NOT 404)
+* Confirm service worker registers in browser DevTools
+
+OUTPUT REQUIREMENTS:
+
+* Show file tree confirming `/public/sw.js`
+* Show updated main entry file with registration code
+* Confirm `/sw.js` is accessible after build
+
+DO NOT:
+
+* Add extra features
+* Modify unrelated files
+* Add advanced caching strategies
+* Add libraries or dependencies
+
+SUCCESS CRITERIA:
+
+* `/sw.js` loads successfully in browser
+* Service worker registers without error
+* PWABuilder detects service worker
+
+END.

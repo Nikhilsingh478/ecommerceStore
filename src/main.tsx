@@ -1,18 +1,12 @@
 import { createRoot } from "react-dom/client";
-import { registerSW } from "virtual:pwa-register";
 import App from "./App.tsx";
 import "./index.css";
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.getRegistrations().then((registrations) => {
-    for (const reg of registrations) {
-      reg.update();
-    }
-  });
-
-  registerSW({
-    onNeedRefresh() {},
-    onOfflineReady() {},
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("SW registered"))
+      .catch((err) => console.error("SW registration failed:", err));
   });
 }
 
