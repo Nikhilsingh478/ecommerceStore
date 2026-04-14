@@ -1,0 +1,116 @@
+You are a senior PWA engineer. Follow instructions EXACTLY. Do not add unnecessary features. Do not overengineer.
+
+OBJECTIVE:
+Fix the PWA so it opens in FULL standalone app mode (no browser UI/top bar) when installed on mobile.
+
+CURRENT ISSUE:
+The app opens with a browser top bar, meaning it is not launching in standalone mode.
+
+STRICT REQUIREMENTS:
+
+* App MUST open without browser UI
+* MUST behave like a native app (no URL bar, no Chrome header)
+* MUST pass installability checks for standalone mode
+
+STEP 1 — VERIFY MANIFEST CONFIG:
+Locate `/public/manifest.webmanifest` or equivalent.
+
+Ensure it contains EXACTLY:
+
+{
+"name": "SwiftCart",
+"short_name": "SwiftCart",
+"start_url": "/",
+"scope": "/",
+"display": "standalone",
+"background_color": "#ffffff",
+"theme_color": "#000000"
+}
+
+CRITICAL:
+
+* display MUST be "standalone"
+* scope MUST be "/"
+* start_url MUST be "/"
+* DO NOT use "browser" or "minimal-ui"
+
+---
+
+STEP 2 — VERIFY MANIFEST LINKING:
+Check `index.html`
+
+Ensure this exists in <head>:
+
+<link rel="manifest" href="/manifest.webmanifest">
+
+Also ensure NO duplicate or wrong manifest paths.
+
+---
+
+STEP 3 — VERIFY SERVICE WORKER:
+Ensure service worker is registered with:
+
+navigator.serviceWorker.register("/sw.js")
+
+Check:
+
+* Service worker is active
+* Scope is "/"
+
+---
+
+STEP 4 — ADD META TAGS (IMPORTANT FOR MOBILE):
+
+Inside <head> add:
+
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+---
+
+STEP 5 — REMOVE CONFLICTS:
+
+* Remove any code forcing redirects or opening in new tabs
+* Remove target="_blank" from internal navigation
+* Ensure routing stays within same origin
+
+---
+
+STEP 6 — BUILD & VERIFY:
+
+After build:
+
+* Open app in Chrome
+* Install via "Add to Home Screen"
+* Launch from home screen
+
+CONFIRM:
+
+* No top browser bar
+* No URL visible
+* Fullscreen app behavior
+
+---
+
+STEP 7 — OUTPUT:
+
+* Show final manifest.json
+* Show index.html head section
+* Confirm service worker registration
+* Confirm app launches in standalone mode
+
+DO NOT:
+
+* Add plugins
+* Add unnecessary PWA features
+* Modify unrelated UI code
+
+SUCCESS CRITERIA:
+
+* App launches as standalone (no browser UI)
+* Looks like a native app
+* Works when installed from home screen
+
+END.
