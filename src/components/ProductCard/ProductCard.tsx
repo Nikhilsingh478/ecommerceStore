@@ -19,11 +19,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       onClick={() => navigate(`/product/${product.id}`)}
     >
       {/* Image */}
-      <div className="relative aspect-square overflow-hidden bg-[#F8FAFC] p-3">
+      <div className="relative aspect-square overflow-hidden bg-[#F8FAFC]">
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.05]"
+          className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05]"
           loading="lazy"
           decoding="async"
         />

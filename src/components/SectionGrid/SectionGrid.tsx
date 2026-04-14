@@ -30,15 +30,16 @@ const SectionGrid = ({ title, items, showAll }: SectionGridProps) => {
             className="flex flex-col items-center gap-2.5 group animate-fade-up"
             style={{ animationDelay: `${i * 30}ms` }}
           >
-            <div className="w-full aspect-square rounded-2xl bg-white border border-[#F1F5F9] shadow-sm flex items-center justify-center p-3 transition-all duration-200 group-hover:shadow-md group-hover:scale-[1.03] group-active:scale-95">
+            <div className="w-full aspect-square rounded-2xl bg-white border border-[#F1F5F9] shadow-sm overflow-hidden transition-all duration-200 group-hover:shadow-md group-hover:scale-[1.03] group-active:scale-95">
               <img
                 src={item.image}
                 alt={item.name}
-                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.05]"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
                 loading="lazy"
                 decoding="async"
               />
             </div>
+
             <span className="text-center text-[11px] leading-tight font-medium text-[#64748B] px-0.5 group-hover:text-[#0F172A] transition-colors">
               {item.name}
             </span>
