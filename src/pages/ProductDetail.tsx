@@ -145,23 +145,24 @@ const ProductDetail = () => {
         )}
       </main>
 
-      {/* Mobile sticky CTA */}
-      <div className="md:hidden fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] inset-x-0 z-40 flex items-center justify-between bg-white/95 backdrop-blur-xl px-5 pt-4 pb-4 border-t border-[#E2E8F0]">
+      {/* ✅ FIXED Mobile sticky CTA */}
+      <div className="md:hidden fixed bottom-0 inset-x-0 z-50 flex items-center justify-between bg-white/95 backdrop-blur-xl px-5 pt-3 pb-[calc(0.9rem+env(safe-area-inset-bottom))] border-t border-[#E2E8F0] shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
         <div>
-          <span className="text-[22px] font-semibold text-[#0F172A] tracking-tight">{formatPrice(product.offerPrice)}</span>
+          <span className="text-[20px] font-semibold text-[#0F172A] tracking-tight">{formatPrice(product.offerPrice)}</span>
           {product.mrp > product.offerPrice && (
             <span className="ml-2 text-sm text-[#94A3B8] line-through">{formatPrice(product.mrp)}</span>
           )}
         </div>
+
         {qty === 0 ? (
           <button
             onClick={() => addToCart(product)}
-            className="rounded-xl bg-[#0F172A] px-8 py-3 text-[14px] font-medium text-white hover:bg-[#1E293B] active:scale-[0.97] transition-all"
+            className="rounded-xl bg-[#0F172A] px-7 py-2.5 text-[14px] font-medium text-white hover:bg-[#1E293B] active:scale-[0.97] transition-all"
           >
             Add to Cart
           </button>
         ) : (
-          <div className="flex h-[44px] items-center gap-5 rounded-xl bg-[#0F172A] px-5 text-white">
+          <div className="flex h-[42px] items-center gap-5 rounded-xl bg-[#0F172A] px-5 text-white">
             <button onClick={() => decreaseQty(product.id)} className="active:scale-90 transition-transform">
               <Minus className="h-4 w-4" strokeWidth={2} />
             </button>
