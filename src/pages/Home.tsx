@@ -13,36 +13,52 @@ const bannerImages = [banner1, banner2, banner3];
 
 const Home = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-background pb-16 md:pb-0">
+    <div className="flex min-h-screen flex-col bg-background pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
       <Header />
 
-      <main className="flex-1 w-full mx-auto max-w-7xl md:px-6 lg:px-8 pt-0 md:pt-6">
-        <Carousel images={bannerImages} />
+      <main className="flex-1 w-full mx-auto max-w-7xl md:px-6 lg:px-8">
 
-        <div className="flex flex-1 flex-col gap-6 mt-4 md:gap-10 md:mt-10 pb-4">
-          {categories.map((cat) => (
-            <SectionGrid
+        {/* Hero Carousel */}
+        <div className="animate-fade-up" style={{ animationDelay: "0ms" }}>
+          <Carousel images={bannerImages} />
+        </div>
+
+        {/* Category Sections */}
+        <div className="flex flex-col gap-8 mt-6 md:gap-12 md:mt-10 pb-6">
+          {categories.map((cat, idx) => (
+            <div
               key={cat.id}
-              title={cat.name}
-              items={cat.subcategories.map((sub) => ({
-                id: sub.id,
-                name: sub.name,
-                image: sub.image,
-                link: `/category/${cat.id}/${sub.id}`,
-              }))}
-            />
+              className="animate-fade-up"
+              style={{ animationDelay: `${80 + idx * 60}ms` }}
+            >
+              <SectionGrid
+                title={cat.name}
+                items={cat.subcategories.map((sub) => ({
+                  id: sub.id,
+                  name: sub.name,
+                  image: sub.image,
+                  link: `/category/${cat.id}/${sub.id}`,
+                }))}
+              />
+            </div>
           ))}
 
-          <SectionGrid
-            title="Popular Brands"
-            columns={4}
-            items={brands.map((b) => ({
-              id: b.id,
-              name: b.name,
-              image: b.image,
-              link: `/category/${b.id}`,
-            }))}
-          />
+          {/* Brands */}
+          <div
+            className="animate-fade-up"
+            style={{ animationDelay: `${80 + categories.length * 60}ms` }}
+          >
+            <SectionGrid
+              title="Popular Brands"
+              columns={4}
+              items={brands.map((b) => ({
+                id: b.id,
+                name: b.name,
+                image: b.image,
+                link: `/category/${b.id}`,
+              }))}
+            />
+          </div>
         </div>
       </main>
 

@@ -4,40 +4,40 @@
 
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 220 10% 20%;
+    --background: 220 30% 98%;
+    --foreground: 222 25% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 10% 25%;
+    --card-foreground: 222 25% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 10% 25%;
+    --popover-foreground: 222 25% 10%;
 
-    --primary: 215 80% 55%;
+    --primary: 220 90% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 220 10% 35%;
+    --secondary: 220 20% 95%;
+    --secondary-foreground: 222 25% 25%;
 
-    --muted: 210 15% 96%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 12% 52%;
 
-    --accent: 35 80% 55%;
+    --accent: 35 90% 58%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 70% 60%;
+    --destructive: 0 72% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 92%;
-    --input: 220 10% 92%;
-    --ring: 215 80% 55%;
+    --border: 220 18% 91%;
+    --input: 220 18% 91%;
+    --ring: 220 90% 56%;
 
     --radius: 1rem;
 
-    --success: 145 50% 45%;
+    --success: 142 72% 38%;
     --success-foreground: 0 0% 100%;
 
-    --offer: 0 70% 60%;
+    --offer: 142 72% 38%;
     --offer-foreground: 0 0% 100%;
 
     --surface: 0 0% 100%;
@@ -45,42 +45,42 @@
   }
 
   .dark {
-    --background: 220 10% 15%;
-    --foreground: 220 10% 95%;
+    --background: 222 24% 9%;
+    --foreground: 220 20% 94%;
 
-    --card: 220 10% 18%;
-    --card-foreground: 220 10% 95%;
+    --card: 222 22% 12%;
+    --card-foreground: 220 20% 94%;
 
-    --popover: 220 10% 18%;
-    --popover-foreground: 220 10% 95%;
+    --popover: 222 22% 12%;
+    --popover-foreground: 220 20% 94%;
 
-    --primary: 215 80% 55%;
+    --primary: 220 90% 62%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 10% 20%;
-    --secondary-foreground: 220 10% 85%;
+    --secondary: 222 20% 16%;
+    --secondary-foreground: 220 20% 80%;
 
-    --muted: 220 10% 20%;
-    --muted-foreground: 220 10% 70%;
+    --muted: 222 20% 16%;
+    --muted-foreground: 220 15% 58%;
 
-    --accent: 35 80% 55%;
+    --accent: 35 90% 58%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 70% 60%;
+    --destructive: 0 72% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 25%;
-    --input: 220 10% 25%;
-    --ring: 215 80% 55%;
+    --border: 222 18% 20%;
+    --input: 222 18% 20%;
+    --ring: 220 90% 62%;
 
-    --success: 145 50% 45%;
+    --success: 142 72% 42%;
     --success-foreground: 0 0% 100%;
 
-    --offer: 0 70% 60%;
+    --offer: 142 72% 42%;
     --offer-foreground: 0 0% 100%;
 
-    --surface: 220 10% 18%;
-    --surface-elevated: 220 10% 22%;
+    --surface: 222 22% 12%;
+    --surface-elevated: 222 22% 15%;
   }
 }
 
@@ -93,16 +93,17 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Fix image display in dark mode */
   .dark img {
     mix-blend-mode: normal !important;
     opacity: 1 !important;
     filter: brightness(1) contrast(1) !important;
   }
 
-  /* Ensure images maintain proper appearance in both themes */
   img {
     mix-blend-mode: normal;
   }
@@ -116,20 +117,86 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .glass {
+    @apply bg-background/80 backdrop-blur-xl border border-border/40;
+  }
+
+  .glass-card {
+    @apply bg-card/90 backdrop-blur-md border border-border/30;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
-/* Custom Standard Scrollbar for Premium Feel */
+/* Premium scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e2e8f0; 
+  background: hsl(220 18% 88%);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1; 
+  background: hsl(220 18% 78%);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Pop in */
+@keyframes pop-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Gentle bounce for badges */
+@keyframes badge-pop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-badge-pop {
+  animation: badge-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Stagger fade-up for grids */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

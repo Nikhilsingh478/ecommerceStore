@@ -14,51 +14,65 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <div 
-      className="flex flex-col rounded-[16px] bg-card p-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition-all duration-[400ms] ease-out active:scale-[0.98] md:hover:-translate-y-1 md:hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] group"
+    <div
+      className="flex flex-col rounded-2xl bg-card border border-border/40 overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out active:scale-[0.97] md:hover:-translate-y-1.5 md:hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] md:hover:border-border/60 group cursor-pointer"
       onClick={() => navigate(`/product/${product.id}`)}
     >
-      <div className="relative cursor-pointer overflow-hidden rounded-xl bg-muted/40 p-4">
+      {/* Image area */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-muted/60 to-muted/30 p-4 pb-3">
         <img
           src={product.image}
           alt={product.name}
           width={200}
           height={200}
-          className="aspect-square w-full object-contain transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.12] mix-blend-multiply"
+          className="aspect-square w-full object-contain transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.08]"
           loading="lazy"
           decoding="async"
         />
         {product.discount > 0 && (
-          <span className="absolute left-2 top-2 rounded-full bg-offer/10 px-2 py-0.5 text-[10px] font-bold tracking-wide text-offer">
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-offer px-2 py-0.5 text-[10px] font-bold tracking-wide text-offer-foreground shadow-[0_1px_4px_hsl(var(--offer)/0.3)]">
             {getDiscountLabel(product.discount)}
           </span>
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-1 px-1 py-2">
-        <p className="truncate text-[13px] font-semibold text-foreground">{product.name}</p>
-        <div className="flex items-center gap-1.5 mt-0.5">
-          <span className="text-sm font-bold text-foreground">{formatPrice(product.offerPrice)}</span>
-          <span className="text-[10px] text-muted-foreground line-through">{formatPrice(product.mrp)}</span>
+
+      {/* Content */}
+      <div className="flex flex-1 flex-col gap-1.5 p-2.5 pt-2">
+        <p className="line-clamp-2 text-[12.5px] font-semibold leading-snug text-foreground">{product.name}</p>
+        <div className="flex items-baseline gap-1.5 mt-0.5">
+          <span className="text-[14px] font-extrabold text-foreground tracking-tight">{formatPrice(product.offerPrice)}</span>
+          {product.mrp > product.offerPrice && (
+            <span className="text-[11px] text-muted-foreground line-through font-medium">{formatPrice(product.mrp)}</span>
+          )}
         </div>
-        <div className="mt-2 h-8">
+
+        {/* Add to cart */}
+        <div className="mt-1.5 h-8">
           {qty === 0 ? (
             <button
               onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-              className="flex w-full h-full items-center justify-center rounded-full bg-primary/10 text-[13px] font-bold text-primary transition-all duration-300 md:hover:bg-primary md:hover:text-primary-foreground active:scale-95"
+              className="flex w-full h-full items-center justify-center gap-1 rounded-full bg-primary text-primary-foreground text-[12px] font-bold shadow-[0_2px_8px_hsl(var(--primary)/0.3)] transition-all duration-300 active:scale-95 md:hover:shadow-[0_4px_16px_hsl(var(--primary)/0.35)] md:hover:brightness-110"
             >
+              <Plus className="h-3.5 w-3.5" strokeWidth={3} />
               ADD
             </button>
           ) : (
-            <div 
-              className="flex w-full h-full items-center justify-between rounded-full bg-muted/50 px-1 transition-all text-foreground"
+            <div
+              className="flex w-full h-full items-center justify-between rounded-full bg-primary/10 border border-primary/20 px-0.5 transition-all"
               onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={() => decreaseQty(product.id)} className="flex h-6 w-7 items-center justify-center rounded-full bg-card shadow-[0_1px_4px_rgba(0,0,0,0.1)] active:scale-95 transition-transform">
-                <Minus className="h-3.5 w-3.5" />
+              <button
+                onClick={() => decreaseQty(product.id)}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm active:scale-90 transition-transform"
+              >
+                <Minus className="h-3 w-3" strokeWidth={3} />
               </button>
-              <span className="text-[12px] font-bold">{qty}</span>
-              <button onClick={() => increaseQty(product.id)} className="flex h-6 w-7 items-center justify-center rounded-full bg-card shadow-[0_1px_4px_rgba(0,0,0,0.1)] active:scale-95 transition-transform">
-                <Plus className="h-3.5 w-3.5" />
+              <span className="text-[13px] font-extrabold text-primary">{qty}</span>
+              <button
+                onClick={() => increaseQty(product.id)}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm active:scale-90 transition-transform"
+              >
+                <Plus className="h-3 w-3" strokeWidth={3} />
               </button>
             </div>
           )}
