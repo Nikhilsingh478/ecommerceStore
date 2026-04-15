@@ -4,9 +4,11 @@ This deeply structured document serves as a self-learning resource, technical re
 
 ---
 
+
+
 ## 1. PROJECT OVERVIEW
 
-**The Problem:** Modern e-commerce platforms often suffer from slow initial loads, bloated JavaScript bundles, and poor mobile experiences. Mobile users expect native-app-like fluidity without having to actively download a heavyweight app from the App Store.
+**The Problem:** Modern     e-commerce platforms often suffer from slow initial loads, bloated JavaScript bundles, and poor mobile experiences. Mobile users expect native-app-like fluidity without having to actively download a heavyweight app from the App Store.
 **The Solution (Our Architecture):** Building a mobile-first Progressive Web App (PWA). By pushing logic to the client side and using a single-page application (React), we eliminate full-page reload lag. PWAs provide home-screen installation and lightning-fast asset caching through highly opinionated Workbox Proxies.
 **Why Frontend-First?** Decoupling the frontend guarantees that UX logic and UI rendering are perfected immediately. It forces the developer to define clear "data contracts" (Mock JSON files backed by authentic Unsplash imagery) so that when a backend API naturally replaces the mock files, the transition is flawless.
 
