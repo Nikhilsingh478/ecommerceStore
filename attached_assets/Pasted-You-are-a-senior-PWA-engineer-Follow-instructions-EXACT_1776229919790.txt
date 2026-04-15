@@ -1,0 +1,159 @@
+You are a senior PWA engineer. Follow instructions EXACTLY. Do not overengineer. Do not break existing functionality.
+
+OBJECTIVE:
+Implement a SAFE, RELIABLE offline experience for the PWA so users can:
+
+* open the app offline
+* browse previously visited pages
+* not see blank screens or crashes
+
+DO NOT attempt full offline database sync. Focus on stable caching strategy.
+
+---
+
+STEP 1 — REPLACE SERVICE WORKER COMPLETELY
+
+Locate `/public/sw.js`.
+
+REPLACE entire file with this EXACT code:
+
+const CACHE_NAME = "swiftcart-v2";
+
+const STATIC_ASSETS = [
+"/",
+"/index.html",
+"/manifest.webmanifest",
+"/favicon.ico"
+];
+
+// INSTALL
+self.addEventListener("install", (event) => {
+event.waitUntil(
+caches.open(CACHE_NAME).then((cache) => {
+return cache.addAll(STATIC_ASSETS);
+})
+);
+self.skipWaiting();
+});
+
+// ACTIVATE
+self.addEventListener("activate", (event) => {
+event.waitUntil(self.clients.claim());
+});
+
+// FETCH HANDLER
+self.addEventListener("fetch", (event) => {
+const request = event.request;
+
+// Only handle GET requests
+if (request.method !== "GET") return;
+
+event.respondWith(
+caches.match(request).then((cachedResponse) => {
+if (cachedResponse) {
+return cachedResponse;
+}
+
+```
+  return fetch(request)
+    .then((networkResponse) => {
+      // Cache successful responses
+      if (
+        networkResponse &&
+        networkResponse.status === 200 &&
+        request.url.startsWith(self.location.origin)
+      ) {
+        const responseClone = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(request, responseClone);
+        });
+      }
+      return networkResponse;
+    })
+    .catch(() => {
+      // Offline fallback
+      return caches.match("/") || caches.match("/index.html");
+    });
+})
+```
+
+);
+});
+
+---
+
+STEP 2 — DO NOT MODIFY APP LOGIC
+
+* DO NOT change React/Vue components
+* DO NOT change API logic
+* DO NOT modify routes
+
+---
+
+STEP 3 — ENSURE SERVICE WORKER REGISTRATION
+
+In main entry file (main.js / main.jsx / main.tsx):
+
+Ensure this EXACT code exists:
+
+if ("serviceWorker" in navigator) {
+window.addEventListener("load", () => {
+navigator.serviceWorker.register("/sw.js");
+});
+}
+
+---
+
+STEP 4 — VERSIONING (IMPORTANT)
+
+If a service worker already exists:
+
+* increment cache name (e.g., v1 → v2)
+
+---
+
+STEP 5 — BUILD + VERIFY
+
+After implementation:
+
+* Run production build
+* Confirm `/sw.js` is accessible
+* Confirm service worker is active in browser
+
+---
+
+STEP 6 — TESTING REQUIREMENTS
+
+Simulate offline:
+
+1. Open app online
+2. Navigate across pages (home, products)
+3. Turn OFF internet
+4. Refresh page
+
+EXPECTED:
+
+* App loads without crashing
+* Previously visited pages load
+* No blank screen
+* Fallback to homepage if needed
+
+---
+
+STEP 7 — DO NOT DO THESE
+
+* DO NOT cache POST/PUT requests
+* DO NOT cache external APIs blindly
+* DO NOT use aggressive cache-first for everything
+* DO NOT break live data fetching when online
+
+---
+
+SUCCESS CRITERIA:
+
+* App opens offline
+* Previously visited content is visible
+* No crashes or blank pages
+* Online functionality remains unaffected
+
+END.
