@@ -515,7 +515,7 @@ const Checkout = () => {
                   className="animate-circle-draw"
                 />
               </svg>
-              <div className="absolute inset-0 flex items-center justify-center rotate-90">
+              <div className="absolute inset-0 flex items-center justify-center">
                 <svg className="h-9 w-9" viewBox="0 0 40 40" fill="none">
                   <path
                     d="M10 20.5 L17 27.5 L30 12.5"
