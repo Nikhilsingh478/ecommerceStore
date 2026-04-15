@@ -36,6 +36,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("COD");
   const [placing, setPlacing] = useState(false);
   const [done, setDone] = useState(false);
+  const [orderId, setOrderId] = useState("");
 
   const savings = items.reduce((acc, i) => acc + (i.product.mrp - i.product.offerPrice) * i.qty, 0);
   const total = totalPrice();
@@ -67,9 +68,10 @@ const Checkout = () => {
     const address = addresses.find((a) => a.id === selectedId);
     if (!address) return;
     setPlacing(true);
+    const newOrderId = Date.now().toString();
     setTimeout(() => {
       addOrder({
-        id: Date.now().toString(),
+        id: newOrderId,
         items: [...items],
         address,
         paymentMethod,
@@ -80,8 +82,8 @@ const Checkout = () => {
       });
       clearCart();
       setPlacing(false);
+      setOrderId(newOrderId);
       setDone(true);
-      setTimeout(() => navigate("/orders"), 2800);
     }, 1500);
   };
 
@@ -486,19 +488,81 @@ const Checkout = () => {
         )}
       </div>
 
-      {/* Success Overlay */}
+      {/* ── Success Modal ── */}
       {done && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm animate-fade-in">
-          <div className="flex flex-col items-center p-10 bg-card rounded-2xl border border-border shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-scale-in mx-6 text-center">
-            <div className="h-20 w-20 rounded-full bg-green-50 dark:bg-green-900/30 flex items-center justify-center mb-6">
-              <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-400" strokeWidth={1.5} />
+        <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center animate-fade-in">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
+          <div className="relative w-full sm:max-w-[400px] bg-card rounded-t-[32px] sm:rounded-[28px] shadow-[0_32px_80px_rgba(0,0,0,0.35)] flex flex-col items-center px-7 pt-9 pb-10 sm:pb-9 text-center animate-slide-up-modal sm:mx-4">
+
+            {/* Animated checkmark */}
+            <div className="relative mb-5">
+              <div className="absolute inset-[-8px] rounded-full bg-green-500/10 animate-success-pulse" />
+              <svg className="h-[88px] w-[88px] -rotate-90" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" stroke="hsl(var(--border))" strokeWidth="2.5" fill="none" />
+                <circle
+                  cx="40" cy="40" r="34"
+                  stroke="#22c55e" strokeWidth="2.5" fill="none" strokeLinecap="round"
+                  pathLength="1"
+                  style={{ strokeDasharray: 1, strokeDashoffset: 1 }}
+                  className="animate-circle-draw"
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center rotate-90">
+                <svg className="h-9 w-9" viewBox="0 0 40 40" fill="none">
+                  <path
+                    d="M10 20.5 L17 27.5 L30 12.5"
+                    stroke="#22c55e" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"
+                    pathLength="1"
+                    style={{ strokeDasharray: 1, strokeDashoffset: 1 }}
+                    className="animate-check-draw"
+                  />
+                </svg>
+              </div>
             </div>
-            <h2 className="text-xl font-semibold text-foreground mb-2">Order Placed!</h2>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-[220px]">
+
+            <h2 className="text-[22px] font-bold text-foreground tracking-tight mb-1">Order Confirmed!</h2>
+            <p className="text-[13.5px] text-muted-foreground leading-relaxed max-w-[260px] mb-5">
               {paymentMethod === "COD"
-                ? "Pay cash when your order arrives."
-                : "Payment confirmed. Your order is being prepared."}
+                ? "Your order is placed. Pay cash when it arrives."
+                : "Payment received. Your order is now being prepared."}
             </p>
+
+            {/* Order details card */}
+            <div className="w-full rounded-2xl bg-background border border-border divide-y divide-border mb-6">
+              <div className="flex items-center justify-between px-5 py-3">
+                <span className="text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground">Order ID</span>
+                <span className="text-[13px] font-bold text-foreground font-mono tracking-wide">
+                  #SC{orderId.slice(-8)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between px-5 py-3">
+                <span className="text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground">Delivery</span>
+                <span className="text-[13px] font-semibold text-foreground">4 – 7 business days</span>
+              </div>
+              <div className="flex items-center justify-between px-5 py-3">
+                <span className="text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground">Payment</span>
+                <span className={`text-[13px] font-semibold ${paymentMethod === "COD" ? "text-amber-600 dark:text-amber-400" : "text-green-600 dark:text-green-400"}`}>
+                  {paymentMethod === "COD" ? "Cash on Delivery" : "Paid Online"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between px-5 py-3">
+                <span className="text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground">Total Paid</span>
+                <span className="text-[14px] font-bold text-foreground">{formatPrice(grandTotal)}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => navigate("/orders")}
+              className="w-full rounded-2xl bg-foreground py-4 text-[15px] font-semibold text-background hover:opacity-90 active:scale-[0.98] transition-all mb-3"
+            >
+              View My Orders
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors py-1"
+            >
+              Continue Shopping
+            </button>
           </div>
         </div>
       )}
