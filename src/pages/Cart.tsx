@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import { ArrowLeft, Trash2, Plus, Minus, CheckCircle, ShoppingBag } from "lucide-react";
+import { ArrowLeft, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "@/store/useCartStore";
 import { formatPrice } from "@/utils/helpers";
@@ -8,16 +7,7 @@ import Header from "@/components/Header/Header";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { items, increaseQty, decreaseQty, removeFromCart, totalPrice, clearCart } = useCartStore();
-
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [snapshotTotal, setSnapshotTotal] = useState(0);
-
-  // Ref guards against the Zustand useSyncExternalStore flush that fires
-  // synchronously inside clearCart(), which re-renders *before* React batches
-  // the setSuccess(true) — this keeps the overlay visible immediately.
-  const successRef = useRef(false);
+  const { items, increaseQty, decreaseQty, removeFromCart, totalPrice } = useCartStore();
 
   const savings = items.reduce(
     (acc, item) => acc + (item.product.mrp - item.product.offerPrice) * item.qty,
@@ -26,33 +16,6 @@ const Cart = () => {
 
   const cartTotal   = totalPrice();
   const deliveryFee = cartTotal >= 499 ? 0 : 40;
-
-  const handleCheckout = () => {
-    setIsCheckingOut(true);
-
-    setTimeout(() => {
-      // 1. Snapshot grand total before the store is wiped
-      const finalTotal = cartTotal + deliveryFee;
-      setSnapshotTotal(finalTotal);
-
-      // 2. Protect the guard synchronously — before clearCart() fires its re-render
-      successRef.current = true;
-
-      // 3. Clear the cart (triggers Zustand → useSyncExternalStore sync flush)
-      clearCart();
-
-      // 4. Now settle React state
-      setIsCheckingOut(false);
-      setSuccess(true);
-
-      // 5. Navigate away after the user has seen the confirmation
-      setTimeout(() => navigate("/orders"), 2800);
-    }, 1400);
-  };
-
-  // Use ref (not state) in the guard so it is already true during the
-  // synchronous re-render that clearCart() triggers
-  const showEmpty = items.length === 0 && !successRef.current;
 
   return (
     <div className="flex min-h-screen flex-col bg-background animate-fade-in pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
@@ -80,7 +43,7 @@ const Cart = () => {
           Cart <span className="text-muted-foreground text-2xl font-normal">({items.length})</span>
         </h1>
 
-        {showEmpty ? (
+        {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-5 py-24 px-8 animate-scale-in">
             <div className="h-20 w-20 rounded-2xl bg-card border border-border flex items-center justify-center">
               <ShoppingBag className="h-8 w-8 text-muted-foreground" strokeWidth={1.5} />
@@ -193,41 +156,16 @@ const Cart = () => {
                   </p>
                 </div>
                 <button
-                  onClick={handleCheckout}
-                  disabled={isCheckingOut}
-                  className="flex items-center justify-center min-w-[130px] rounded-xl bg-foreground px-7 py-3.5 text-[14px] font-semibold text-background hover:opacity-90 active:scale-[0.97] transition-all disabled:opacity-60 disabled:scale-100"
+                  onClick={() => navigate("/checkout")}
+                  className="flex items-center justify-center min-w-[130px] rounded-xl bg-foreground px-7 py-3.5 text-[14px] font-semibold text-background hover:opacity-90 active:scale-[0.97] transition-all"
                 >
-                  {isCheckingOut ? (
-                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-background/30 border-t-background" />
-                  ) : (
-                    "Place Order"
-                  )}
+                  Checkout
                 </button>
               </div>
             </div>
           </div>
         )}
       </main>
-
-      {/* ── Order Confirmed overlay ──────────────────────────────────────────── */}
-      {/* Rendered at root level so it is never clipped by the empty-state guard */}
-      {success && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/80 backdrop-blur-md animate-fade-in">
-          <div className="flex flex-col items-center p-10 bg-card rounded-3xl border border-border shadow-[0_24px_80px_rgba(0,0,0,0.18)] animate-scale-in mx-6 text-center max-w-[320px] w-full">
-            <div className="h-[72px] w-[72px] rounded-full bg-green-50 dark:bg-green-950/40 flex items-center justify-center mb-5">
-              <CheckCircle className="h-9 w-9 text-green-600 dark:text-green-400" strokeWidth={1.6} />
-            </div>
-            <h2 className="text-[20px] font-bold text-foreground mb-1 tracking-tight">Order Placed!</h2>
-            <p className="text-muted-foreground text-[13px] leading-relaxed mb-4">
-              Your items are being packed and will arrive in <span className="font-semibold text-foreground">10 minutes</span>.
-            </p>
-            <div className="w-full rounded-xl bg-background border border-border px-4 py-3 text-center">
-              <p className="text-[11px] text-muted-foreground uppercase tracking-wider mb-0.5">Amount paid</p>
-              <p className="text-[22px] font-bold text-foreground">{formatPrice(snapshotTotal)}</p>
-            </div>
-          </div>
-        </div>
-      )}
 
       <BottomNav />
     </div>

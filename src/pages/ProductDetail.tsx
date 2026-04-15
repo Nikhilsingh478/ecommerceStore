@@ -146,8 +146,10 @@ const ProductDetail = () => {
         )}
       </main>
 
-      {/* Mobile sticky CTA */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-50 flex items-center justify-between bg-white/95 dark:bg-[#080808]/98 backdrop-blur-xl px-5 pt-3 pb-[calc(0.9rem+env(safe-area-inset-bottom))] border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+      {/* Mobile sticky CTA — sits above the BottomNav pill (~72px from bottom) */}
+      <div className="md:hidden fixed inset-x-0 z-50 flex items-center justify-between bg-card/95 backdrop-blur-xl px-5 pt-3 pb-4 border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
+        style={{ bottom: "calc(4.5rem + env(safe-area-inset-bottom))" }}
+      >
         <div>
           <span className="text-[20px] font-semibold text-foreground tracking-tight">{formatPrice(product.offerPrice)}</span>
           {product.mrp > product.offerPrice && (

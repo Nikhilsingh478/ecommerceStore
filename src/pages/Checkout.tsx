@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowLeft, Plus, MapPin, CheckCircle, Smartphone, Banknote, Trash2, Home, Briefcase, MoreHorizontal } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { ArrowLeft, Plus, MapPin, Smartphone, Banknote, Trash2, Home, Briefcase, MoreHorizontal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "@/store/useCartStore";
 import { useAddressStore, Address } from "@/store/useAddressStore";
@@ -37,6 +37,10 @@ const Checkout = () => {
   const [placing, setPlacing] = useState(false);
   const [done, setDone] = useState(false);
   const [orderId, setOrderId] = useState("");
+
+  // Ref guard — protects against Zustand's synchronous useSyncExternalStore flush
+  // that fires inside clearCart() before React batches the setDone(true) update.
+  const doneRef = useRef(false);
 
   const savings = items.reduce((acc, i) => acc + (i.product.mrp - i.product.offerPrice) * i.qty, 0);
   const total = totalPrice();
@@ -80,6 +84,9 @@ const Checkout = () => {
         placedAt: new Date().toISOString(),
         status: "Confirmed",
       });
+      // Set ref synchronously BEFORE clearCart() triggers Zustand's
+      // useSyncExternalStore flush — this stops the guard from navigating away
+      doneRef.current = true;
       clearCart();
       setPlacing(false);
       setOrderId(newOrderId);
@@ -87,10 +94,11 @@ const Checkout = () => {
     }, 1500);
   };
 
-  if (items.length === 0 && !done) {
-    navigate("/cart");
-    return null;
-  }
+  useEffect(() => {
+    if (items.length === 0 && !doneRef.current) {
+      navigate("/cart");
+    }
+  }, [items.length, navigate]);
 
   const TypeIcon = ({ type }: { type: Address["type"] }) => {
     if (type === "Home") return <Home className="h-3.5 w-3.5" />;
@@ -537,7 +545,7 @@ const Checkout = () => {
               </div>
               <div className="flex items-center justify-between px-5 py-3">
                 <span className="text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground">Delivery</span>
-                <span className="text-[13px] font-semibold text-foreground">4 – 7 business days</span>
+                <span className="text-[13px] font-semibold text-green-600 dark:text-green-400">In ~10 minutes ⚡</span>
               </div>
               <div className="flex items-center justify-between px-5 py-3">
                 <span className="text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground">Payment</span>
