@@ -128,7 +128,7 @@ const Carousel = ({ images }: CarouselProps) => {
         <button
           key={dir}
           onClick={action}
-          className={`hidden md:flex absolute ${pos} top-1/2 -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm text-foreground shadow-[0_4px_16px_rgba(0,0,0,0.18)] opacity-0 transition-all duration-300 md:group-hover:opacity-100 hover:scale-110 active:scale-95`}
+          className={`hidden md:flex absolute ${pos} top-1/2 -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm text-gray-800 shadow-[0_4px_16px_rgba(0,0,0,0.18)] opacity-0 transition-all duration-300 md:group-hover:opacity-100 hover:scale-110 active:scale-95`}
           aria-label={dir}
         >
           <Icon className="h-5 w-5" />
