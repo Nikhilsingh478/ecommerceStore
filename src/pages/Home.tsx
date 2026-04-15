@@ -13,7 +13,7 @@ const bannerImages = [banner1, banner2, banner3];
 
 const Home = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-[#F8FAFC] pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
+    <div className="flex min-h-screen flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       <Header />
 
       <main className="flex-1 w-full mx-auto max-w-7xl md:px-6 lg:px-8">

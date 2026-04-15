@@ -13,7 +13,7 @@ const SectionGrid = ({ title, items, showAll }: SectionGridProps) => {
     <section>
       {/* Section header */}
       <div className="flex items-center justify-between mb-4 px-4 md:px-0">
-        <h2 className="text-[17px] font-semibold text-[#0F172A] tracking-tight">{title}</h2>
+        <h2 className="text-[17px] font-semibold text-foreground tracking-tight">{title}</h2>
         {showAll && (
           <button className="text-[13px] font-medium text-[#2563EB] active:opacity-60 transition-opacity hover:underline underline-offset-2">
             See all
@@ -30,7 +30,7 @@ const SectionGrid = ({ title, items, showAll }: SectionGridProps) => {
             className="flex flex-col items-center gap-2.5 group animate-fade-up"
             style={{ animationDelay: `${i * 30}ms` }}
           >
-            <div className="w-full aspect-square rounded-2xl bg-white border border-[#F1F5F9] shadow-sm overflow-hidden transition-all duration-200 group-hover:shadow-md group-hover:scale-[1.03] group-active:scale-95">
+            <div className="w-full aspect-square rounded-2xl bg-card border border-border shadow-sm overflow-hidden transition-all duration-200 group-hover:shadow-md group-hover:scale-[1.03] group-active:scale-95">
               <img
                 src={item.image}
                 alt={item.name}
@@ -40,7 +40,7 @@ const SectionGrid = ({ title, items, showAll }: SectionGridProps) => {
               />
             </div>
 
-            <span className="text-center text-[11px] leading-tight font-medium text-[#64748B] px-0.5 group-hover:text-[#0F172A] transition-colors">
+            <span className="text-center text-[11px] leading-tight font-medium text-muted-foreground px-0.5 group-hover:text-foreground transition-colors">
               {item.name}
             </span>
           </button>
