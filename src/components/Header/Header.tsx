@@ -39,7 +39,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-card/90 backdrop-blur-xl border-b border-border">
+      <header className="sticky top-0 z-40 w-full bg-white/90 dark:bg-[#080808]/95 backdrop-blur-xl border-b border-border">
         <div className="mx-auto flex h-[60px] max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
 
           {/* Logo */}
@@ -157,7 +157,7 @@ const Header = () => {
 
       {/* Mobile Search Overlay */}
       {mobileSearchOpen && (
-        <div className="md:hidden fixed inset-0 z-50 flex flex-col bg-card animate-fade-in">
+        <div className="md:hidden fixed inset-0 z-50 flex flex-col bg-white dark:bg-[#080808] animate-fade-in">
           <div className="flex items-center gap-3 px-4 py-3.5 border-b border-border">
             <button
               onClick={() => { setMobileSearchOpen(false); setSearchQuery(""); }}

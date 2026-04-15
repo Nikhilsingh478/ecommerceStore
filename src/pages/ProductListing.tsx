@@ -61,41 +61,41 @@ const ProductListing = () => {
   const title = typeof rawTitle === "string" ? rawTitle.replace(/-/g, " ") : rawTitle;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F8FAFC] pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
+    <div className="flex min-h-screen flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       <div className="hidden md:block"><Header /></div>
 
       {/* Mobile header */}
-      <div className="md:hidden sticky top-0 z-40 flex items-center gap-3 bg-white/90 backdrop-blur-xl px-4 py-3.5 border-b border-[#E2E8F0]">
+      <div className="md:hidden sticky top-0 z-40 flex items-center gap-3 bg-white/90 dark:bg-[#080808]/95 backdrop-blur-xl px-4 py-3.5 border-b border-border">
         <button onClick={() => navigate(-1)} className="active:scale-90 transition-transform -ml-1">
-          <ChevronLeft className="h-6 w-6 text-[#0F172A]" />
+          <ChevronLeft className="h-6 w-6 text-foreground" />
         </button>
-        <span className="text-[17px] font-semibold text-[#0F172A] capitalize">{title}</span>
+        <span className="text-[17px] font-semibold text-foreground capitalize">{title}</span>
       </div>
 
       <main className="flex-1 w-full mx-auto max-w-7xl md:px-6 lg:px-8 flex flex-col pt-0 md:pt-8 animate-fade-in">
 
         {/* Desktop title */}
-        <div className="hidden md:flex flex-col pb-6 border-b border-[#E2E8F0] mb-6">
-          <h1 className="text-3xl font-semibold text-[#0F172A] capitalize tracking-tight">{title}</h1>
-          <p className="text-[#64748B] mt-1.5 text-sm">{filtered.length} products found</p>
+        <div className="hidden md:flex flex-col pb-6 border-b border-border mb-6">
+          <h1 className="text-3xl font-semibold text-foreground capitalize tracking-tight">{title}</h1>
+          <p className="text-muted-foreground mt-1.5 text-sm">{filtered.length} products found</p>
         </div>
 
         {/* Action bar */}
         <div className="flex items-center justify-between px-4 md:px-0 py-3 md:py-0 md:mb-6">
-          <p className="md:hidden text-[13px] text-[#64748B]">{filtered.length} items</p>
+          <p className="md:hidden text-[13px] text-muted-foreground">{filtered.length} items</p>
           <div className="flex items-center gap-2 ml-auto">
             <button
               onClick={() => setSortOpen(true)}
-              className="flex items-center gap-1.5 rounded-full bg-white border border-[#E2E8F0] px-4 py-2 text-[13px] font-medium text-[#0F172A] active:scale-95 transition-transform hover:bg-[#F8FAFC]"
+              className="flex items-center gap-1.5 rounded-full bg-card border border-border px-4 py-2 text-[13px] font-medium text-foreground active:scale-95 transition-transform hover:bg-secondary"
             >
-              <ArrowUpDown className="h-3.5 w-3.5 text-[#64748B]" strokeWidth={1.8} />
+              <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={1.8} />
               Sort
             </button>
             <button
               onClick={() => setFilterOpen(true)}
-              className="flex items-center gap-1.5 rounded-full bg-white border border-[#E2E8F0] px-4 py-2 text-[13px] font-medium text-[#0F172A] active:scale-95 transition-transform hover:bg-[#F8FAFC]"
+              className="flex items-center gap-1.5 rounded-full bg-card border border-border px-4 py-2 text-[13px] font-medium text-foreground active:scale-95 transition-transform hover:bg-secondary"
             >
-              <SlidersHorizontal className="h-3.5 w-3.5 text-[#64748B]" strokeWidth={1.8} />
+              <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={1.8} />
               Filter
             </button>
           </div>
@@ -116,11 +116,11 @@ const ProductListing = () => {
 
         {filtered.length === 0 && (
           <div className="py-32 flex flex-col items-center justify-center text-center animate-fade-in">
-            <div className="h-16 w-16 rounded-2xl bg-white border border-[#E2E8F0] flex items-center justify-center mb-4">
-              <SlidersHorizontal className="h-5 w-5 text-[#94A3B8]" strokeWidth={1.7} />
+            <div className="h-16 w-16 rounded-2xl bg-card border border-border flex items-center justify-center mb-4">
+              <SlidersHorizontal className="h-5 w-5 text-muted-foreground" strokeWidth={1.7} />
             </div>
-            <h3 className="text-base font-semibold text-[#0F172A]">No products found</h3>
-            <p className="text-sm text-[#64748B] mt-1 max-w-[200px]">Try adjusting your filters</p>
+            <h3 className="text-base font-semibold text-foreground">No products found</h3>
+            <p className="text-sm text-muted-foreground mt-1 max-w-[200px]">Try adjusting your filters</p>
           </div>
         )}
       </main>
