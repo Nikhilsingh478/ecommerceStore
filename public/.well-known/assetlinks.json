@@ -1,8 +1,12 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "app.vercel.ecommerce_store_phi_cyan.twa",
-    "sha256_cert_fingerprints": ["0A:13:16:52:53:2B:2D:CA:62:56:69:1B:7D:94:DA:33:36:09:B2:DC:48:DB:88:AB:D9:28:BE:1A:E9:EE:B0:C0"]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.ecommerce_store_phi_cyan.twa",
+      "sha256_cert_fingerprints": [
+        "17:32:79:FC:57:99:2C:ED:27:58:9D:DC:F7:B3:55:79:24:E0:58:2E:F3:91:85:3A:9B:2A:3F:D7:23:10:C7:A1"
+      ]
+    }
   }
-}]
+]
