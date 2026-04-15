@@ -18,7 +18,7 @@ const Cart = () => {
     <div className="flex min-h-screen flex-col bg-background animate-fade-in pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
 
       {/* Mobile header */}
-      <div className="sticky top-0 z-40 flex md:hidden items-center gap-3 bg-card/90 backdrop-blur-xl px-4 py-3.5 border-b border-border">
+      <div className="sticky top-0 z-40 flex md:hidden items-center gap-3 bg-white dark:bg-[#0a0a0a] border-b border-[#e2e8f0] dark:border-[#1f1f1f] px-4 py-3.5">
         <button
           onClick={() => navigate(-1)}
           className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-secondary active:scale-90 transition-all"

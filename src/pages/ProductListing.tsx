@@ -65,7 +65,7 @@ const ProductListing = () => {
       <div className="hidden md:block"><Header /></div>
 
       {/* Mobile header */}
-      <div className="md:hidden sticky top-0 z-40 flex items-center gap-3 bg-white/90 dark:bg-[#080808]/95 backdrop-blur-xl px-4 py-3.5 border-b border-border">
+      <div className="md:hidden sticky top-0 z-40 flex items-center gap-3 bg-white dark:bg-[#0a0a0a] border-b border-[#e2e8f0] dark:border-[#1f1f1f] px-4 py-3.5">
         <button onClick={() => navigate(-1)} className="active:scale-90 transition-transform -ml-1">
           <ChevronLeft className="h-6 w-6 text-foreground" />
         </button>
