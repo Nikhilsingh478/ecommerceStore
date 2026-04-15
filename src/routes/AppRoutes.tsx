@@ -3,7 +3,9 @@ import Home from "@/pages/Home";
 import ProductListing from "@/pages/ProductListing";
 import ProductDetail from "@/pages/ProductDetail";
 import Cart from "@/pages/Cart";
+import Checkout from "@/pages/Checkout";
 import Orders from "@/pages/Orders";
+import BuyAgain from "@/pages/BuyAgain";
 import Account from "@/pages/Account";
 import StaticPage from "@/pages/StaticPage";
 import NotFound from "@/pages/NotFound";
@@ -23,7 +25,9 @@ const AppRoutes = () => (
     <Route path="/category/:category/:subcategory" element={<ProductListing />} />
     <Route path="/product/:id" element={<ProductDetail />} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/checkout" element={<Checkout />} />
     <Route path="/orders" element={<Orders />} />
+    <Route path="/buy-again" element={<BuyAgain />} />
     <Route path="/account" element={<Account />} />
     <Route path="/share-target" element={<ShareTarget />} />
     <Route path="/static/:page" element={<StaticPage />} />

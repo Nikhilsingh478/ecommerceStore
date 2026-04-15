@@ -50,6 +50,30 @@ Service worker (Workbox) is enabled in both dev and production with:
 - Offline fallback via `public/offline.html`
 - NetworkFirst for HTML pages, CacheFirst for images/fonts
 
+## Features Implemented
+
+### Dark Mode
+- All components use Tailwind CSS variable-based classes (`bg-background`, `bg-card`, `text-foreground`, `border-border`, etc.) to respond to the `.dark` class applied by `next-themes`.
+- Toggle lives in the Account page.
+
+### Checkout Flow (`/checkout`)
+- Multi-step checkout: Address → Payment → Order Confirmed
+- Address management: saved to `localStorage` via `useAddressStore` (add, select, remove)
+- Support for Home / Work / Other address types with full Indian state list
+- Payment methods: Cash on Delivery (COD) or Online (simulated)
+- Free delivery on orders ≥ ₹499
+- Orders saved to `useOrderStore` (persisted in `localStorage`)
+
+### Orders Page (`/orders`)
+- Shows real order history from `useOrderStore`
+- Displays items, address, payment method, status, and totals
+- "Buy Again" button re-adds all items from an order to cart
+
+### Buy Again Page (`/buy-again`)
+- Dedicated page at `/buy-again` (in both header and bottom nav)
+- Shows unique products from all past orders
+- "Add to Cart" per item with live cart state display
+
 ## Deployment
 
 Configured as a static site deployment:
