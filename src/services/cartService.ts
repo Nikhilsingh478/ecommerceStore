@@ -1,23 +1,22 @@
-import { apiCall, apiJson } from "./apiService";
+import apiClient from "./apiClient";
 import { API_ENDPOINTS } from "@/config/api";
 
 export const getCart = async () => {
-  return apiJson(API_ENDPOINTS.viewCart);
+  const res = await apiClient.get(API_ENDPOINTS.viewCart);
+  return res.data;
 };
 
 export const addToCart = async (subProductId: string | number, quantity = 1) => {
-  return apiCall(API_ENDPOINTS.addToCart, {
-    method: "POST",
-    body: JSON.stringify({
-      subProduct: { id: subProductId },
-      quantity,
-    }),
+  const res = await apiClient.post(API_ENDPOINTS.addToCart, {
+    subProduct: { id: subProductId },
+    quantity,
   });
+  return res.data;
 };
 
 export const removeFromCart = async (subProductId: string | number) => {
-  return apiCall(API_ENDPOINTS.removeFromCart, {
-    method: "DELETE",
+  const res = await apiClient.delete(API_ENDPOINTS.removeFromCart, {
     headers: { subProductId: String(subProductId) },
   });
+  return res.data;
 };
