@@ -20,8 +20,8 @@ export const apiCall = async (
 
   const authHeaders: Record<string, string> = {};
   if (!skipAuth) {
-    const email = localStorage.getItem("userEmail");
-    const password = localStorage.getItem("userPassword");
+    const email = localStorage.getItem("emailId");
+    const password = localStorage.getItem("password");
     if (email) authHeaders.emailId = email;
     if (password) authHeaders.password = password;
   }
@@ -36,7 +36,9 @@ export const apiCall = async (
   });
 
   if (response.status === 403) {
-    localStorage.clear();
+    localStorage.removeItem("emailId");
+    localStorage.removeItem("password");
+    localStorage.removeItem("user");
     if (typeof window !== "undefined" && window.location.pathname !== "/login") {
       window.location.href = "/login";
     }

@@ -1,34 +1,37 @@
-import { apiCall, apiJson } from "./apiService";
+import apiClient from "./apiClient";
 import { API_ENDPOINTS } from "@/config/api";
 
 export const getOrders = async (pageNumber = 0) => {
-  return apiJson(API_ENDPOINTS.orders, {
+  const res = await apiClient.get(API_ENDPOINTS.orders, {
     headers: { pageNumber: String(pageNumber) },
   });
+  return res.data;
 };
 
 export const getOrderDetails = async (orderId: string | number) => {
-  return apiJson(API_ENDPOINTS.orderDetails, {
+  const res = await apiClient.get(API_ENDPOINTS.orderDetails, {
     headers: { orderId: String(orderId) },
   });
+  return res.data;
 };
 
 export const getInvoice = async (orderId: string | number) => {
-  return apiCall(API_ENDPOINTS.invoice, {
+  const res = await apiClient.get(API_ENDPOINTS.invoice, {
     headers: { orderId: String(orderId) },
   });
+  return res.data;
 };
 
 export const cancelOrder = async (orderId: string | number) => {
-  return apiCall(API_ENDPOINTS.cancelOrder, {
-    method: "PUT",
-    headers: { orderId: String(orderId) },
-  });
+  const res = await apiClient.put(
+    API_ENDPOINTS.cancelOrder,
+    {},
+    { headers: { orderId: String(orderId) } },
+  );
+  return res.data;
 };
 
 export const placeOrder = async (payload: Record<string, unknown>) => {
-  return apiCall(API_ENDPOINTS.orders, {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
+  const res = await apiClient.post(API_ENDPOINTS.orders, payload);
+  return res.data;
 };

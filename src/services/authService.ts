@@ -1,4 +1,5 @@
-import { BASE_URL, API_ENDPOINTS } from "@/config/api";
+import apiClient from "./apiClient";
+import { API_ENDPOINTS } from "@/config/api";
 
 export interface AuthUser {
   emailId?: string;
@@ -8,29 +9,29 @@ export interface AuthUser {
 }
 
 export const login = async (email: string, password: string): Promise<AuthUser> => {
-  const res = await fetch(`${BASE_URL}${API_ENDPOINTS.login}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      emailId: email,
-      password,
+  const res = await apiClient.post(
+    API_ENDPOINTS.login,
+    {},
+    {
+      headers: {
+        emailId: email,
+        password,
+      },
     },
-  });
+  );
 
-  if (!res.ok) throw new Error("Login failed");
+  const user: AuthUser = res.data;
 
-  const user: AuthUser = await res.json();
-
-  localStorage.setItem("userEmail", email);
-  localStorage.setItem("userPassword", password);
+  localStorage.setItem("emailId", email);
+  localStorage.setItem("password", password);
   localStorage.setItem("user", JSON.stringify(user));
 
   return user;
 };
 
 export const logout = (): void => {
-  localStorage.removeItem("userEmail");
-  localStorage.removeItem("userPassword");
+  localStorage.removeItem("emailId");
+  localStorage.removeItem("password");
   localStorage.removeItem("user");
   if (typeof window !== "undefined") {
     window.location.href = "/login";

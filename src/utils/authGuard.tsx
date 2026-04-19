@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import type { ReactElement } from "react";
 
 export const isAuthenticated = (): boolean => {
-  return !!localStorage.getItem("userEmail");
+  return !!localStorage.getItem("emailId");
 };
 
 /** Wrap a route element to require auth */
