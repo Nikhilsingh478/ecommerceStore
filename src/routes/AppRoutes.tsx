@@ -8,6 +8,8 @@ import Orders from "@/pages/Orders";
 import BuyAgain from "@/pages/BuyAgain";
 import Account from "@/pages/Account";
 import StaticPage from "@/pages/StaticPage";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
 import NotFound from "@/pages/NotFound";
 
 const ShareTarget = () => {
@@ -30,6 +32,8 @@ const AppRoutes = () => (
     <Route path="/buy-again" element={<BuyAgain />} />
     <Route path="/account" element={<Account />} />
     <Route path="/share-target" element={<ShareTarget />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
     <Route path="/static/:page" element={<StaticPage />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
