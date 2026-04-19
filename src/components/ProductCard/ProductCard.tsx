@@ -1,6 +1,6 @@
 import { Plus, Minus } from "lucide-react";
 import { Product } from "@/data/products";
-import { useCartStore } from "@/store/useCartStore";
+import { useCart } from "@/hooks/useCart";
 import { formatPrice, getDiscountLabel } from "@/utils/helpers";
 import { useNavigate } from "react-router-dom";
 
@@ -9,8 +9,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { addToCart, increaseQty, decreaseQty } = useCartStore();
-  const qty = useCartStore((s) => s.getQty(product.id));
+  const { addToCart, increaseQty, decreaseQty, getQty } = useCart();
+  const qty = getQty(product.id);
   const navigate = useNavigate();
 
   return (

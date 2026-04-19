@@ -1,13 +1,15 @@
 import { Search, ShoppingCart, User, Package, X, ArrowLeft, RotateCcw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useCartStore } from "@/store/useCartStore";
+import { useCart } from "@/hooks/useCart";
 import { useState, useRef, useEffect, useMemo } from "react";
-import { products } from "@/data/products";
 import { formatPrice } from "@/utils/helpers";
+import { useProducts } from "@/hooks/useProducts";
 
 const Header = () => {
   const navigate = useNavigate();
-  const totalItems = useCartStore((s) => s.totalItems());
+  const { totalItems } = useCart();
+  const { products } = useProducts();
+  const cartAmount = totalItems();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -142,12 +144,12 @@ const Header = () => {
             >
               <ShoppingCart className="h-[18px] w-[18px]" strokeWidth={1.7} />
               <span className="text-[10px] font-medium">Cart</span>
-              {totalItems > 0 && (
+              {cartAmount > 0 && (
                 <span
-                  key={totalItems}
+                  key={cartAmount}
                   className="absolute -top-0.5 right-1.5 flex h-[17px] min-w-[17px] animate-badge-pop items-center justify-center rounded-full bg-[#2563EB] px-1 text-[9px] font-bold text-white"
                 >
-                  {totalItems}
+                  {cartAmount}
                 </span>
               )}
             </button>

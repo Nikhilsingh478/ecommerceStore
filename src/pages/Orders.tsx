@@ -1,7 +1,7 @@
 import { ArrowLeft, Package, MapPin, Banknote, Smartphone, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useOrderStore } from "@/store/useOrderStore";
-import { useCartStore } from "@/store/useCartStore";
+import { useOrders } from "@/hooks/useOrders";
+import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
 
@@ -14,8 +14,8 @@ const statusColors: Record<string, string> = {
 
 const Orders = () => {
   const navigate = useNavigate();
-  const { orders } = useOrderStore();
-  const { addToCart } = useCartStore();
+  const { orders } = useOrders();
+  const { addToCart } = useCart();
 
   const handleBuyAgain = (orderId: string) => {
     const order = orders.find((o) => o.id === orderId);

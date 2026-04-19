@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Plus, MapPin, Smartphone, Banknote, Trash2, Home, Briefcase, MoreHorizontal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useCartStore } from "@/store/useCartStore";
-import { useAddressStore, Address } from "@/store/useAddressStore";
-import { useOrderStore } from "@/store/useOrderStore";
+import { useCart } from "@/hooks/useCart";
+import { useAddresses } from "@/hooks/useAddresses";
+import { Address } from "@/store/useAddressStore";
+import { placeOrder } from "@/services/orderService";
 import { formatPrice } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
 
@@ -24,9 +25,8 @@ const emptyForm = {
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const { items, totalPrice, clearCart } = useCartStore();
-  const { addresses, addAddress, removeAddress } = useAddressStore();
-  const { addOrder } = useOrderStore();
+  const { items, cartId, totalPrice, clearCart } = useCart();
+  const { addresses, addAddress, removeAddress } = useAddresses();
 
   const [step, setStep] = useState<Step>("address");
   const [selectedId, setSelectedId] = useState<string>(addresses[0]?.id ?? "");
@@ -42,7 +42,7 @@ const Checkout = () => {
   // that fires inside clearCart() before React batches the setDone(true) update.
   const doneRef = useRef(false);
 
-  const savings = items.reduce((acc, i) => acc + (i.product.mrp - i.product.offerPrice) * i.qty, 0);
+  const savings = items.reduce((acc, i) => acc + ((i.product?.mrp || 0) - (i.product?.offerPrice || 0)) * i.qty, 0);
   const total = totalPrice();
   const deliveryFee = total >= 499 ? 0 : 40;
   const grandTotal = total + deliveryFee;
@@ -68,30 +68,29 @@ const Checkout = () => {
     setForm(emptyForm);
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     const address = addresses.find((a) => a.id === selectedId);
-    if (!address) return;
+    if (!address || !selectedId) return;
+    if (!cartId) {
+      console.error("Missing cartId");
+      return;
+    }
     setPlacing(true);
-    const newOrderId = Date.now().toString();
-    setTimeout(() => {
-      addOrder({
-        id: newOrderId,
-        items: [...items],
-        address,
+    try {
+      await placeOrder(cartId, selectedId, {
         paymentMethod,
-        total: grandTotal,
-        savings,
-        placedAt: new Date().toISOString(),
-        status: "Confirmed",
+        totalAmount: grandTotal,
       });
-      // Set ref synchronously BEFORE clearCart() triggers Zustand's
-      // useSyncExternalStore flush — this stops the guard from navigating away
+
       doneRef.current = true;
       clearCart();
       setPlacing(false);
-      setOrderId(newOrderId);
+      setOrderId(Date.now().toString());
       setDone(true);
-    }, 1500);
+    } catch (err) {
+      console.error("Order failed", err);
+      setPlacing(false);
+    }
   };
 
   useEffect(() => {

@@ -2,17 +2,18 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Plus, Minus, Star, Truck, ShieldCheck } from "lucide-react";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import Header from "@/components/Header/Header";
-import { products } from "@/data/products";
-import { useCartStore } from "@/store/useCartStore";
+import { useProducts } from "@/hooks/useProducts";
+import { useCart } from "@/hooks/useCart";
 import { formatPrice, getDiscountLabel } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { products } = useProducts();
   const product  = products.find((p) => p.id === id);
-  const { addToCart, increaseQty, decreaseQty } = useCartStore();
-  const qty = useCartStore((s) => s.getQty(id || ""));
+  const { addToCart, increaseQty, decreaseQty, getQty } = useCart();
+  const qty = getQty(id || "");
 
   if (!product) {
     return (

@@ -1,6 +1,6 @@
 import { Home, ShoppingBag, RotateCcw, ShoppingCart, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCartStore } from "@/store/useCartStore";
+import { useCart } from "@/hooks/useCart";
 
 const tabs = [
   { label: "Home",      icon: Home,         path: "/" },
@@ -13,7 +13,8 @@ const tabs = [
 const BottomNav = () => {
   const navigate   = useNavigate();
   const location   = useLocation();
-  const totalItems = useCartStore((s) => s.totalItems());
+  const { totalItems } = useCart();
+  const cartAmount = totalItems();
 
   return (
     <nav
@@ -45,12 +46,12 @@ const BottomNav = () => {
                 }`}
                 strokeWidth={isActive ? 2.2 : 1.7}
               />
-              {tab.label === "Cart" && totalItems > 0 && (
+              {tab.label === "Cart" && cartAmount > 0 && (
                 <span
-                  key={totalItems}
+                  key={cartAmount}
                   className="absolute -right-2 -top-1.5 flex h-[15px] min-w-[15px] animate-badge-pop items-center justify-center rounded-full bg-[#2563EB] px-1 text-[9px] font-bold text-white"
                 >
-                  {totalItems}
+                  {cartAmount}
                 </span>
               )}
             </div>

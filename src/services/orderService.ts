@@ -31,7 +31,15 @@ export const cancelOrder = async (orderId: string | number) => {
   return res.data;
 };
 
-export const placeOrder = async (payload: Record<string, unknown>) => {
-  const res = await apiClient.post(API_ENDPOINTS.orders, payload);
+export const placeOrder = async (cartId: string, addressId: string, payload: Record<string, unknown>) => {
+  if (!localStorage.getItem("emailId")) {
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
+    throw new Error("Unauthorized");
+  }
+  const res = await apiClient.post(API_ENDPOINTS.orders, payload, {
+    headers: { cartId, addressId },
+  });
   return res.data;
 };

@@ -1,7 +1,7 @@
 import { ArrowLeft, RotateCcw, ShoppingCart, Package } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useOrderStore } from "@/store/useOrderStore";
-import { useCartStore } from "@/store/useCartStore";
+import { useOrders } from "@/hooks/useOrders";
+import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
 import { Product } from "@/data/products";
@@ -9,8 +9,8 @@ import { useState } from "react";
 
 const BuyAgain = () => {
   const navigate = useNavigate();
-  const { orders } = useOrderStore();
-  const { addToCart, getQty } = useCartStore();
+  const { orders } = useOrders();
+  const { addToCart, getQty } = useCart();
   const [added, setAdded] = useState<Set<string>>(new Set());
 
   const allProducts = orders.flatMap((o) => o.items.map((i) => i.product));

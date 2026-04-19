@@ -1,16 +1,16 @@
 import { ArrowLeft, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useCartStore } from "@/store/useCartStore";
+import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
 import Header from "@/components/Header/Header";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { items, increaseQty, decreaseQty, removeFromCart, totalPrice } = useCartStore();
+  const { items, increaseQty, decreaseQty, removeFromCart, totalPrice } = useCart();
 
   const savings = items.reduce(
-    (acc, item) => acc + (item.product.mrp - item.product.offerPrice) * item.qty,
+    (acc, item) => acc + ((item.product?.mrp || 0) - (item.product?.offerPrice || 0)) * item.qty,
     0
   );
 

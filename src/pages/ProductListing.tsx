@@ -6,11 +6,12 @@ import BottomNav from "@/components/BottomNav/BottomNav";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import FilterDrawer from "@/components/FilterDrawer/FilterDrawer";
 import SortDrawer from "@/components/SortDrawer/SortDrawer";
-import { products } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 
 const ProductListing = () => {
   const { category, subcategory } = useParams();
   const navigate = useNavigate();
+  const { products } = useProducts();
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
   const [sortValue, setSortValue] = useState("popular");
