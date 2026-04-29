@@ -24,7 +24,7 @@ const SplashScreen = ({ onDone }: SplashScreenProps) => {
         position: "fixed",
         inset: 0,
         zIndex: 99999,
-        background: "linear-gradient(160deg, #f0fdf4 0%, #ffffff 50%, #f0f9ff 100%)",
+        background: "linear-gradient(160deg, #dcfce7 0%, #f0fdf4 50%, #e8f5ec 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

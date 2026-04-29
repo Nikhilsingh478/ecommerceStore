@@ -6,7 +6,7 @@ import { formatPrice } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
 
 const statusColors: Record<string, string> = {
-  Confirmed: "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  Confirmed: "bg-emerald-50 text-emerald-700 dark:bg-blue-900/30 dark:text-blue-400",
   Packed:    "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
   Shipped:   "bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
   Delivered: "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400",
@@ -26,7 +26,7 @@ const Orders = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-background animate-fade-in pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
-      <div className="sticky top-0 z-40 flex items-center gap-3 bg-white dark:bg-[#0a0a0a] border-b border-[#e2e8f0] dark:border-[#1f1f1f] px-4 py-3.5">
+      <div className="sticky top-0 z-40 flex items-center gap-3 bg-background dark:bg-[#0a0a0a] border-b border-border dark:border-[#1f1f1f] px-4 py-3.5">
         <button
           onClick={() => navigate(-1)}
           className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-secondary active:scale-90 transition-all"

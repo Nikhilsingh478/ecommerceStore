@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-white/90 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border-b border-[#e2e8f0] dark:border-[#1f1f1f]">
+      <header className="sticky top-0 z-40 w-full bg-background/90 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border-b border-border dark:border-[#1f1f1f]">
         <div className="mx-auto flex h-[60px] max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
 
           {/* Logo */}
@@ -52,7 +52,7 @@ const Header = () => {
               <ShoppingCart className="h-4 w-4 text-background" strokeWidth={2} />
             </div>
             <span className="hidden sm:block text-[17px] font-semibold tracking-tight text-foreground">
-              Swift<span className="text-[#2563EB]">Cart</span>
+              Swift<span className="text-primary">Cart</span>
             </span>
           </button>
 
@@ -96,7 +96,7 @@ const Header = () => {
                     ))}
                     <button
                       onClick={() => handleSearch()}
-                      className="flex items-center justify-center gap-2 w-full p-3 text-[13px] font-medium text-[#2563EB] hover:bg-secondary transition-colors"
+                      className="flex items-center justify-center gap-2 w-full p-3 text-[13px] font-medium text-primary hover:bg-secondary transition-colors"
                     >
                       <Search className="h-3.5 w-3.5" />
                       View all results for "{searchQuery}"
@@ -158,7 +158,7 @@ const Header = () => {
 
       {/* Mobile Search Overlay */}
       {mobileSearchOpen && (
-        <div className="md:hidden fixed inset-0 z-50 flex flex-col bg-white dark:bg-[#080808] animate-fade-in">
+        <div className="md:hidden fixed inset-0 z-50 flex flex-col bg-background dark:bg-[#080808] animate-fade-in">
           <div className="flex items-center gap-3 px-4 py-3.5 border-b border-border">
             <button
               onClick={() => { setMobileSearchOpen(false); setSearchQuery(""); }}

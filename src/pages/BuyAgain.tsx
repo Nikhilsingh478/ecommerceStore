@@ -37,7 +37,7 @@ const BuyAgain = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0 animate-fade-in">
-      <div className="sticky top-0 z-40 flex items-center gap-3 bg-white dark:bg-[#0a0a0a] border-b border-[#e2e8f0] dark:border-[#1f1f1f] px-4 py-3.5">
+      <div className="sticky top-0 z-40 flex items-center gap-3 bg-background dark:bg-[#0a0a0a] border-b border-border dark:border-[#1f1f1f] px-4 py-3.5">
         <button
           onClick={() => navigate(-1)}
           className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-secondary active:scale-90 transition-all"
@@ -127,7 +127,7 @@ const BuyAgain = () => {
                       {inCart && (
                         <button
                           onClick={() => navigate("/cart")}
-                          className="text-[11px] font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-[11px] font-medium text-primary dark:text-blue-400 hover:underline"
                         >
                           Go to Cart →
                         </button>

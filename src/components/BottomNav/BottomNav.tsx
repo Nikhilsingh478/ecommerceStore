@@ -18,7 +18,7 @@ const BottomNav = () => {
 
   return (
     <nav
-      className="fixed inset-x-4 z-50 flex md:hidden items-center rounded-[24px] bg-white/95 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border border-[#e2e8f0] dark:border-[#1f1f1f] shadow-[0_4px_24px_rgba(0,0,0,0.10)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+      className="fixed inset-x-4 z-50 flex md:hidden items-center rounded-[24px] bg-background/95 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border border-border dark:border-[#1f1f1f] shadow-[0_4px_24px_rgba(34,120,60,0.10)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
       style={{ bottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
     >
       {tabs.map((tab) => {
@@ -34,7 +34,7 @@ const BottomNav = () => {
             className="relative flex flex-1 flex-col items-center justify-center gap-0.5 py-3 active:scale-90 transition-transform duration-150"
           >
             {isActive && (
-              <span className="absolute inset-x-2 inset-y-1 rounded-[18px] bg-[#f1f5f9] dark:bg-[#1c1c1c] animate-scale-in" />
+              <span className="absolute inset-x-2 inset-y-1 rounded-[18px] bg-[#d4eadb] dark:bg-[#1c1c1c] animate-scale-in" />
             )}
 
             <div className="relative z-10">
