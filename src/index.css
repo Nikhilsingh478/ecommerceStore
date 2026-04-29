@@ -4,40 +4,43 @@
 
 @layer base {
   :root {
-    /* -- Light Green Palette -- */
-    --background:        142 40% 95%;      /* Distinctly mint-green background */
-    --foreground:        0 0% 3.9%;
+    /* -- White Background with Green Accents -- */
+    --background:        0 0% 100%;          /* Pure white background */
+    --foreground:        0 0% 3%;           /* Normal dark text */
 
-    --card:              142 35% 97.5%;    /* Green-tinted white cards */
-    --card-foreground:   0 0% 3.9%;
+    --card:              0 0% 100%;          /* White cards */
+    --card-foreground:   0 0% 3%;           /* Normal dark text */
 
-    --popover:           142 35% 97.5%;
-    --popover-foreground:0 0% 3.9%;
+    --popover:           0 0% 100%;
+    --popover-foreground:0 0% 3%;
 
-    --primary:           142 76% 36%;      /* Deep vivid green CTAs */
-    --primary-foreground:0 0% 100%;
+    /* Primary = green for buttons and UI elements */
+    --primary:           142 70% 45%;        /* Light green for buttons */
+    --primary-foreground:0 0% 100%;          /* White text on green */
 
-    --secondary:         142 30% 91%;      /* Light green secondary */
-    --secondary-foreground: 0 0% 9%;
+    --secondary:         0 0% 96%;           /* Light gray secondary */
+    --secondary-foreground: 0 0% 8%;         /* Normal text */
 
-    --muted:             142 25% 89%;      /* Soft green muted areas */
-    --muted-foreground:  0 0% 45.1%;
+    --muted:             0 0% 96%;           /* Light gray muted */
+    --muted-foreground:  0 0% 45%;           /* Normal gray text */
 
-    --accent:            142 70% 42%;      /* Vivid green accent */
+    /* Accent = green for interactive elements */
+    --accent:            142 70% 45%;        /* Light green accent */
     --accent-foreground: 0 0% 100%;
 
-    --destructive:       0 84.2% 60.2%;
+    --destructive:       0 84% 60%;           /* Normal red */
     --destructive-foreground: 0 0% 100%;
 
-    --border:            142 28% 84%;      /* Green-tinted borders */
-    --input:             142 28% 84%;
-    --ring:              142 70% 42%;
+    --border:            0 0% 90%;            /* Light gray borders */
+    --input:             0 0% 90%;
+    --ring:              142 70% 45%;          /* Green focus ring */
 
     --radius: 1rem;
 
-    --success:           142 76% 36%;
+    /* Semantic - green for success/offer elements */
+    --success:           142 70% 45%;        /* Light green success */
     --success-foreground:0 0% 100%;
-    --offer:             142 76% 36%;
+    --offer:             142 70% 45%;        /* Light green offers */
     --offer-foreground:  0 0% 100%;
     --surface:           142 25% 93%;
   }
