@@ -15,7 +15,7 @@ const SectionGrid = ({ title, items, showAll }: SectionGridProps) => {
       <div className="flex items-center justify-between mb-4 px-4 md:px-0">
         <h2 className="text-[17px] font-semibold text-foreground tracking-tight">{title}</h2>
         {showAll && (
-          <button className="text-[13px] font-medium text-[#2563EB] active:opacity-60 transition-opacity hover:underline underline-offset-2">
+          <button className="text-[13px] font-medium text-primary active:opacity-60 transition-opacity hover:underline underline-offset-2">
             See all
           </button>
         )}

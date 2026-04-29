@@ -108,7 +108,7 @@ const Checkout = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       {/* Header */}
-      <div className="sticky top-0 z-40 flex items-center gap-3 bg-white dark:bg-[#0a0a0a] border-b border-[#e2e8f0] dark:border-[#1f1f1f] px-4 py-3.5">
+      <div className="sticky top-0 z-40 flex items-center gap-3 bg-background dark:bg-[#0a0a0a] border-b border-border dark:border-[#1f1f1f] px-4 py-3.5">
         <button onClick={() => step === "payment" ? setStep("address") : navigate("/cart")}
           className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-secondary active:scale-90 transition-all">
           <ArrowLeft className="h-5 w-5 text-foreground" />
@@ -328,7 +328,7 @@ const Checkout = () => {
                         <MapPin className="h-4 w-4 text-muted-foreground" />
                         <span className="text-[13px] font-semibold text-foreground">Delivering to</span>
                       </div>
-                      <button onClick={() => setStep("address")} className="text-[12px] font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+                      <button onClick={() => setStep("address")} className="text-[12px] font-semibold text-primary dark:text-blue-400 hover:underline">
                         Change
                       </button>
                     </div>

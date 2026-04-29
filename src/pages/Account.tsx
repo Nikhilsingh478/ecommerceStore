@@ -37,7 +37,7 @@ const Account = () => {
 
   return (
     <div className="flex min-h-screen flex-col animate-in fade-in duration-300 pb-16 bg-background text-foreground">
-      <div className="sticky top-0 z-40 flex items-center gap-3 bg-white dark:bg-[#0a0a0a] border-b border-[#e2e8f0] dark:border-[#1f1f1f] px-4 py-3">
+      <div className="sticky top-0 z-40 flex items-center gap-3 bg-background dark:bg-[#0a0a0a] border-b border-border dark:border-[#1f1f1f] px-4 py-3">
         <button onClick={() => navigate(-1)} className="active:scale-90 transition-transform"><ArrowLeft className="h-5 w-5 text-foreground" /></button>
         <span className="text-[15px] font-semibold text-foreground tracking-tight">Account</span>
       </div>
