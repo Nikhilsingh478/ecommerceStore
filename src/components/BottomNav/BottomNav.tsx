@@ -18,7 +18,7 @@ const BottomNav = () => {
 
   return (
     <nav
-      className="fixed inset-x-4 z-50 flex md:hidden items-center rounded-[24px] bg-background/95 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border border-border dark:border-[#1f1f1f] shadow-[0_4px_24px_rgba(34,120,60,0.10)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+      className="fixed inset-x-4 z-50 flex md:hidden items-center rounded-[24px] bg-white/95 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border border-border dark:border-[#1f1f1f] shadow-[0_4px_24px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
       style={{ bottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
     >
       {tabs.map((tab) => {

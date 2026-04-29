@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-background/90 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border-b border-border dark:border-[#1f1f1f]">
+      <header className="sticky top-0 z-40 w-full bg-white/90 dark:bg-[#0a0a0a] backdrop-blur-xl dark:backdrop-blur-none border-b border-border dark:border-[#1f1f1f]">
         <div className="mx-auto flex h-[60px] max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
 
           {/* Logo */}
