@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "@/hooks/useCart";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { formatPrice } from "@/utils/helpers";
-import { useProducts } from "@/hooks/useProducts";
 
 const Header = () => {
   const navigate = useNavigate();
   const { totalItems } = useCart();
-  const { products } = useProducts();
+  const products: any[] = []; // Disabled live search without global products
   const cartAmount = totalItems();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -147,7 +146,7 @@ const Header = () => {
               {cartAmount > 0 && (
                 <span
                   key={cartAmount}
-                  className="absolute -top-0.5 right-1.5 flex h-[17px] min-w-[17px] animate-badge-pop items-center justify-center rounded-full bg-[#2563EB] px-1 text-[9px] font-bold text-white"
+                  className="absolute -top-0.5 right-1.5 flex h-[17px] min-w-[17px] animate-badge-pop items-center justify-center rounded-full bg-primary text-primary-foreground text-[9px] font-bold"
                 >
                   {cartAmount}
                 </span>

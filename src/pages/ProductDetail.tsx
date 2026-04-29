@@ -1,17 +1,21 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, Plus, Minus, Star, Truck, ShieldCheck } from "lucide-react";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import Header from "@/components/Header/Header";
-import { useProducts } from "@/hooks/useProducts";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice, getDiscountLabel } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
+import { useCartStore } from "@/store/useCartStore";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { products } = useProducts();
-  const product  = products.find((p) => p.id === id);
+  const location = useLocation();
+  const cartItems = useCartStore(state => state.items);
+  
+  // Try to get product from navigation state, then cart
+  const product = location.state?.product || cartItems.find(i => i.product.id === id)?.product;
+  
   const { addToCart, increaseQty, decreaseQty, getQty } = useCart();
   const qty = getQty(id || "");
 
@@ -23,8 +27,8 @@ const ProductDetail = () => {
     );
   }
 
-  const similar        = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 6);
-  const boughtTogether = products.filter((p) => p.brand === product.brand && p.id !== product.id).slice(0, 6);
+  const similar: any[] = [];
+  const boughtTogether: any[] = [];
 
   return (
     <div className="flex min-h-screen flex-col bg-background pb-[calc(5.5rem+env(safe-area-inset-bottom))] md:pb-0 animate-fade-in">
@@ -54,7 +58,7 @@ const ProductDetail = () => {
                 className="h-full w-full object-contain animate-float"
               />
               {product.discount > 0 && (
-                <div className="absolute top-4 left-4 rounded-full bg-green-100 dark:bg-green-900/40 px-3 py-1 text-[11px] font-medium text-green-700 dark:text-green-400">
+                <div className="absolute top-4 left-4 rounded-full bg-success/10 px-3 py-1 text-[11px] font-medium text-success">
                   {getDiscountLabel(product.discount)}
                 </div>
               )}
@@ -82,7 +86,7 @@ const ProductDetail = () => {
               {product.mrp > product.offerPrice && (
                 <>
                   <span className="text-lg text-muted-foreground line-through mb-0.5">{formatPrice(product.mrp)}</span>
-                  <span className="mb-0.5 rounded-full bg-green-100 dark:bg-green-900/40 px-2.5 py-1 text-[11px] font-medium text-green-700 dark:text-green-400">
+                  <span className="mb-0.5 rounded-full bg-success/10 px-2.5 py-1 text-[11px] font-medium text-success">
                     {getDiscountLabel(product.discount)}
                   </span>
                 </>
@@ -113,11 +117,11 @@ const ProductDetail = () => {
                 </button>
               ) : (
                 <div className="flex h-[52px] items-center gap-6 rounded-xl bg-foreground px-5 text-background">
-                  <button onClick={() => decreaseQty(product.id)} className="p-1.5 active:scale-90 transition-transform hover:bg-black/10 dark:hover:bg-white/10 rounded-lg">
+                  <button onClick={() => decreaseQty(product.id)} className="p-1.5 active:scale-90 transition-transform hover:bg-muted/50 rounded-lg">
                     <Minus className="h-5 w-5" strokeWidth={2} />
                   </button>
                   <span className="min-w-[24px] text-center text-lg font-semibold">{qty}</span>
-                  <button onClick={() => increaseQty(product.id)} className="p-1.5 active:scale-90 transition-transform hover:bg-black/10 dark:hover:bg-white/10 rounded-lg">
+                  <button onClick={() => increaseQty(product.id)} className="p-1.5 active:scale-90 transition-transform hover:bg-muted/50 rounded-lg">
                     <Plus className="h-5 w-5" strokeWidth={2} />
                   </button>
                 </div>

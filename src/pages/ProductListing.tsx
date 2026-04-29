@@ -11,7 +11,7 @@ import { useProducts } from "@/hooks/useProducts";
 const ProductListing = () => {
   const { category, subcategory } = useParams();
   const navigate = useNavigate();
-  const { products } = useProducts();
+  const { products, loading } = useProducts(subcategory as string);
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
   const [sortValue, setSortValue] = useState("popular");
@@ -60,6 +60,22 @@ const ProductListing = () => {
 
   const rawTitle = query ? `"${query}"` : (subcategory || category || "All Products");
   const title = typeof rawTitle === "string" ? rawTitle.replace(/-/g, " ") : rawTitle;
+
+  const EmptyState = () => (
+    <div className="flex min-h-screen flex-col bg-background">
+      <div className="hidden md:block"><Header /></div>
+      <div className="flex-1 flex flex-col items-center justify-center text-center animate-fade-in px-4">
+        <h3 className="text-xl font-semibold text-foreground">No products found</h3>
+        <p className="text-sm text-muted-foreground mt-2">Try selecting a different category or subcategory.</p>
+        <button onClick={() => navigate(-1)} className="mt-6 rounded-xl bg-foreground px-6 py-2.5 text-sm font-medium text-background">
+          Go Back
+        </button>
+      </div>
+      <BottomNav />
+    </div>
+  );
+
+  if (!loading && !products.length) return <EmptyState />;
 
   return (
     <div className="flex min-h-screen flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { X, SlidersHorizontal, RotateCcw, Check } from "lucide-react";
-import { categories } from "@/data/categories";
+import { useCategories } from "@/hooks/useCategories";
 import { brands } from "@/data/brands";
 
 interface FilterDrawerProps {
@@ -39,8 +39,10 @@ const FilterDrawer = ({ open, onClose, onApply }: FilterDrawerProps) => {
     });
   };
 
+  const categories = useCategories();
+
   const getOptions = () => {
-    if (activeTab === "Category") return categories.map((c) => ({ id: c.id, label: c.name }));
+    if (activeTab === "Category") return categories.map((c: any) => ({ id: c.primaryCategoryId?.toString(), label: c.primaryCategoryName }));
     if (activeTab === "Brand") return brands.map((b) => ({ id: b.name, label: b.name }));
     if (activeTab === "Discount") return discountOptions.map((d) => ({ id: d, label: d }));
     return priceOptions.map((p) => ({ id: p, label: p }));

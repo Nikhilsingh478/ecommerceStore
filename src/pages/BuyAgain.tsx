@@ -4,7 +4,7 @@ import { useOrders } from "@/hooks/useOrders";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/helpers";
 import BottomNav from "@/components/BottomNav/BottomNav";
-import { Product } from "@/data/products";
+import { Product } from "@/hooks/useProducts";
 import { useState } from "react";
 
 const BuyAgain = () => {
@@ -109,7 +109,7 @@ const BuyAgain = () => {
                         onClick={() => handleAdd(product)}
                         className={`flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold transition-all active:scale-[0.97] ${
                           justAdded
-                            ? "bg-green-600 text-white"
+                            ? "bg-success text-success-foreground"
                             : inCart
                             ? "bg-secondary text-foreground border border-border"
                             : "bg-foreground text-background hover:opacity-90"

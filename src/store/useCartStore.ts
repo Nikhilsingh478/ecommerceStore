@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from "@/data/products";
+import { Product } from "@/hooks/useProducts";
 
 export interface CartItem {
   product: Product;

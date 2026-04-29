@@ -1,5 +1,5 @@
 import { Plus, Minus } from "lucide-react";
-import { Product } from "@/data/products";
+import { Product } from "@/hooks/useProducts";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice, getDiscountLabel } from "@/utils/helpers";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div
       className="group flex flex-col rounded-2xl bg-card border border-border shadow-sm overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-md hover:-translate-y-px active:scale-[0.98]"
-      onClick={() => navigate(`/product/${product.id}`)}
+      onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
     >
       {/* Image */}
       <div className="relative aspect-square overflow-hidden bg-background">

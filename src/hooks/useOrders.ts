@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getOrders } from "@/services/orderService";
-import { getImage } from "@/hooks/useProducts";
 
 export function mapOrder(apiOrder: any) {
   return {
@@ -24,7 +23,7 @@ export function mapOrder(apiOrder: any) {
         name: i.subProduct?.productName || "Product",
         price: i.sellingPricePerUnit || 0,
         offerPrice: i.sellingPricePerUnit || 0,
-        image: getImage(i.subProduct?.productImageList?.[0]?.id),
+        image: i.subProduct?.productImageList?.[0]?.id ? `http://localhost:8080/ecommerce/productimage?productImageId=${i.subProduct?.productImageList[0].id}` : "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=200&h=200&fit=crop&auto=format&q=80",
       },
       qty: i.quantity || 1,
     })),

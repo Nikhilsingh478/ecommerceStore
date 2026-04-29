@@ -2,7 +2,8 @@ import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
 import Carousel from "@/components/Carousel/Carousel";
 import SectionGrid from "@/components/SectionGrid/SectionGrid";
-import { categories } from "@/data/categories";
+import { useCategories } from "@/hooks/useCategories";
+import { useSubCategories } from "@/hooks/useSubCategories";
 import { brands } from "@/data/brands";
 
 import banner1 from "@/assets/banner1.webp";
@@ -11,7 +12,27 @@ import banner3 from "@/assets/banner3.webp";
 
 const bannerImages = [banner1, banner2, banner3];
 
+const CategorySection = ({ category, idx }: { category: any, idx: number }) => {
+  const subcategories = useSubCategories(category.primaryCategoryId);
+  if (!subcategories || subcategories.length === 0) return null;
+  return (
+    <div className="animate-fade-up" style={{ animationDelay: `${idx * 50}ms` }}>
+      <SectionGrid
+        title={category.primaryCategoryName}
+        items={subcategories.map((sub: any) => ({
+          id: sub.subCategoryId?.toString(),
+          name: sub.subCategoryName,
+          image: sub.productImageId ? `http://localhost:8080/ecommerce/productimage?productImageId=${sub.productImageId}` : "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=200&h=200&fit=crop&auto=format&q=80",
+          link: `/category/${category.primaryCategoryId}/${sub.subCategoryId}`,
+        }))}
+      />
+    </div>
+  );
+};
+
 const Home = () => {
+  const categories = useCategories();
+
   return (
     <div className="flex min-h-screen flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       <Header />
@@ -25,22 +46,8 @@ const Home = () => {
 
         {/* Sections */}
         <div className="flex flex-col gap-10 mt-8 md:gap-14 md:mt-12 pb-8">
-          {categories.map((cat, idx) => (
-            <div
-              key={cat.id}
-              className="animate-fade-up"
-              style={{ animationDelay: `${idx * 50}ms` }}
-            >
-              <SectionGrid
-                title={cat.name}
-                items={cat.subcategories.map((sub) => ({
-                  id: sub.id,
-                  name: sub.name,
-                  image: sub.image,
-                  link: `/category/${cat.id}/${sub.id}`,
-                }))}
-              />
-            </div>
+          {categories.map((cat: any, idx: number) => (
+            <CategorySection key={cat.primaryCategoryId} category={cat} idx={idx} />
           ))}
 
           <div

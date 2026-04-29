@@ -49,7 +49,7 @@ const BottomNav = () => {
               {tab.label === "Cart" && cartAmount > 0 && (
                 <span
                   key={cartAmount}
-                  className="absolute -right-2 -top-1.5 flex h-[15px] min-w-[15px] animate-badge-pop items-center justify-center rounded-full bg-[#2563EB] px-1 text-[9px] font-bold text-white"
+                  className="absolute -right-2 -top-1.5 flex h-[15px] min-w-[15px] animate-badge-pop items-center justify-center rounded-full bg-primary text-primary-foreground text-[9px] font-bold"
                 >
                   {cartAmount}
                 </span>
